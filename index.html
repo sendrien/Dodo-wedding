@@ -288,6 +288,48 @@
   #music-btn:hover{transform:scale(1.06)}
   #music-btn svg{width:18px;height:18px;stroke:var(--navy);fill:none;stroke-width:1.6}
 
+  /* Overlay d'invitation (apparaît uniquement si l'autoplay est bloqué) */
+  #audio-gate{
+    display:none;
+    position:fixed;inset:0;z-index:100;
+    background:rgba(3,4,94,.92);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+    align-items:center;justify-content:center;
+    text-align:center;
+    color:#fff;
+    padding:32px;
+    cursor:pointer;
+    animation:fadeIn .4s ease;
+  }
+  #audio-gate.show{display:flex}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  #audio-gate .gate-inner{max-width:420px}
+  #audio-gate .monogram{
+    color:var(--gold);font-size:clamp(2.6rem,10vw,4rem);
+    font-family:'Cormorant Garamond',serif;
+  }
+  #audio-gate .monogram span{font-style:italic;font-size:.7em}
+  #audio-gate h2{
+    font-family:'Cormorant Garamond',serif;font-weight:400;
+    font-size:clamp(1.3rem,4.5vw,1.7rem);
+    color:#fff;margin:18px 0 10px;
+  }
+  #audio-gate p{
+    font-family:'Jost',sans-serif;font-weight:300;
+    font-size:.92rem;color:#B8B6D0;line-height:1.6;
+  }
+  #audio-gate .gate-btn{
+    display:inline-block;margin-top:28px;
+    padding:14px 38px;
+    border:1px solid var(--gold);
+    color:var(--gold);
+    font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    border-radius:2px;
+    transition:all .3s ease;
+  }
+  #audio-gate:hover .gate-btn{background:var(--gold);color:var(--navy)}
+
   /* ---------- REVEAL ---------- */
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
   .reveal.in{opacity:1;transform:none}
@@ -534,17 +576,17 @@
 </footer>
 
 <!-- ══════════ MUSIQUE ══════════ -->
-<audio id="bg-music" loop preload="auto" playsinline>
-  <source src="/musique.mp4" type="audio/mpeg">
+<audio id="bg-music" loop preload="auto" playsinline webkit-playsinline>
+  <source src="/musique.mp4" type="audio/mp4">
+  <source src="/musique.mp4" type="video/mp4">
 </audio>
+
 <button id="music-btn" aria-label="Couper la musique" title="Couper la musique">
-  <!-- Icône "son actif" (par défaut, car la musique tente de démarrer) -->
   <svg id="icon-on" viewBox="0 0 24 24">
     <path d="M9 18V5l12-2v13"/>
     <circle cx="6" cy="18" r="3"/>
     <circle cx="18" cy="16" r="3"/>
   </svg>
-  <!-- Icône "son coupé" -->
   <svg id="icon-off" viewBox="0 0 24 24" style="display:none">
     <path d="M9 18V5l12-2v13"/>
     <circle cx="6" cy="18" r="3"/>
@@ -553,8 +595,18 @@
   </svg>
 </button>
 
+<!-- Overlay affiché UNIQUEMENT si l'autoplay est bloqué par le navigateur -->
+<div id="audio-gate" role="button" tabindex="0" aria-label="Démarrer l'expérience">
+  <div class="gate-inner">
+    <div class="monogram">K<span>&</span>R</div>
+    <h2>Bienvenue</h2>
+    <p>Touchez l'écran pour découvrir notre faire-part en musique.</p>
+    <span class="gate-btn">Entrer</span>
+  </div>
+</div>
+
 <script>
-/* ---------- COMPTE À REBOURS (vers le 1er événement : mardi 24 nov, 10h) ---------- */
+/* ---------- COMPTE À REBOURS ---------- */
 const TARGET = new Date('2026-11-24T10:00:00').getTime();
 const cd = {d:document.getElementById('cd-d'),h:document.getElementById('cd-h'),
             m:document.getElementById('cd-m'),s:document.getElementById('cd-s')};
@@ -616,17 +668,23 @@ form.addEventListener('submit', async (e)=>{
   }
 });
 
-/* ---------- MUSIQUE : lecture auto + coupure ---------- */
+/* ══════════════════════════════════════════════════════════
+   MUSIQUE — Stratégie "autoplay maximal"
+   1. Tentative immédiate au chargement
+   2. Si bloqué → tentative à la 1ʳᵉ interaction (clic, scroll, mousemove, touch, clavier)
+   3. Si toujours bloqué après 1,2 s → overlay "Entrer" en dernier recours
+   ══════════════════════════════════════════════════════════ */
 const audio   = document.getElementById('bg-music');
 const mBtn    = document.getElementById('music-btn');
-const iOn     = document.getElementById('icon-on');   // son actif
-const iOff    = document.getElementById('icon-off');  // son coupé
+const iOn     = document.getElementById('icon-on');
+const iOff    = document.getElementById('icon-off');
+const gate    = document.getElementById('audio-gate');
 let   playing = false;
-let   userMuted = false;   // l'utilisateur a explicitement coupé : on ne relance jamais
+let   userMuted = false;
 
-audio.volume = 0.55;       // volume adouci (0 à 1)
+audio.volume = 0.55;
 
-/* Met à jour l'icône + les attributs d'accessibilité */
+/* Icône + accessibilité */
 function setIcon(isPlaying){
   if(isPlaying){
     iOn.style.display  = 'block';
@@ -641,46 +699,60 @@ function setIcon(isPlaying){
   }
 }
 
-/* Tente la lecture ; renvoie true en cas de succès */
+/* Tentative de lecture */
 async function tryPlay(){
   if(userMuted) return false;
   try {
+    audio.muted = false;
     await audio.play();
     playing = true;
     setIcon(true);
     return true;
   } catch (err) {
-    // Navigateur a bloqué l'autoplay
     playing = false;
     setIcon(false);
     return false;
   }
 }
 
-/* 1. Tentative immédiate au chargement du DOM */
-window.addEventListener('DOMContentLoaded', tryPlay);
+/* 1. Tentative immédiate (au cas où le navigateur l'autorise) */
+tryPlay();
 
-/* 2. Si bloqué, on démarre à la 1ʳᵉ interaction utilisateur */
-['click','touchstart','keydown','scroll'].forEach(evt => {
-  window.addEventListener(evt, function onFirstInteraction(){
-    if(playing || userMuted) return;
-    tryPlay().then(ok => {
-      if(ok){
-        ['click','touchstart','keydown','scroll'].forEach(e =>
-          window.removeEventListener(e, onFirstInteraction)
-        );
-      }
-    });
-  }, { passive: true });
-});
+/* 2. Tentatives sur TOUTE interaction possible */
+const events = ['click','touchstart','touchend','keydown','mousemove','mousedown','scroll','wheel','pointerdown'];
+function onAnyInteraction(){
+  if(playing || userMuted) return;
+  tryPlay().then(ok => {
+    if(ok){
+      events.forEach(e => window.removeEventListener(e, onAnyInteraction, true));
+      gate.classList.remove('show');
+    }
+  });
+}
+events.forEach(e => window.addEventListener(e, onAnyInteraction, { passive: true, capture: true }));
 
-/* 3. Bouton : couper / réactiver */
+/* 3. Overlay de secours après 1,2 s si toujours rien */
+setTimeout(() => {
+  if(!playing && !userMuted) gate.classList.add('show');
+}, 1200);
+
+/* Clic sur l'overlay → démarre la musique et le referme */
+function closeGate(){
+  userMuted = false;
+  tryPlay().then(ok => {
+    if(ok) gate.classList.remove('show');
+  });
+}
+gate.addEventListener('click', closeGate);
+gate.addEventListener('touchstart', closeGate, { passive: true });
+
+/* 4. Bouton play/pause */
 mBtn.addEventListener('click', async (e) => {
   e.stopPropagation();
   if(playing){
     audio.pause();
     playing   = false;
-    userMuted = true;       // l'utilisateur a coupé : on respecte son choix
+    userMuted = true;
     setIcon(false);
   } else {
     userMuted = false;
@@ -688,13 +760,14 @@ mBtn.addEventListener('click', async (e) => {
   }
 });
 
-/* 4. Synchronisation de l'icône si le navigateur met en pause tout seul */
+/* 5. Synchro icône si le navigateur met en pause tout seul */
 audio.addEventListener('pause', () => {
   if(!userMuted){ playing = false; setIcon(false); }
 });
 audio.addEventListener('play', () => {
   playing = true;
   setIcon(true);
+  gate.classList.remove('show');
 });
 </script>
 
