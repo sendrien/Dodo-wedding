@@ -288,47 +288,67 @@
   #music-btn:hover{transform:scale(1.06)}
   #music-btn svg{width:18px;height:18px;stroke:var(--navy);fill:none;stroke-width:1.6}
 
-  /* Overlay d'invitation (apparaît uniquement si l'autoplay est bloqué) */
+  /* ---------- OVERLAY D'ACCUEIL (premier écran) ---------- */
   #audio-gate{
-    display:none;
+    display:flex;
     position:fixed;inset:0;z-index:100;
-    background:rgba(3,4,94,.92);
-    backdrop-filter:blur(6px);
-    -webkit-backdrop-filter:blur(6px);
+    background:rgba(3,4,94,.96);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
     align-items:center;justify-content:center;
     text-align:center;
     color:#fff;
     padding:32px;
     cursor:pointer;
-    animation:fadeIn .4s ease;
+    opacity:1;
+    transition:opacity .7s ease;
   }
-  #audio-gate.show{display:flex}
-  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-  #audio-gate .gate-inner{max-width:420px}
+  #audio-gate.hide{
+    opacity:0;
+    pointer-events:none;
+  }
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  #audio-gate .gate-inner{
+    max-width:440px;
+    animation:fadeIn .9s ease both;
+  }
   #audio-gate .monogram{
-    color:var(--gold);font-size:clamp(2.6rem,10vw,4rem);
+    color:var(--gold);
+    font-size:clamp(3rem,12vw,5rem);
     font-family:'Cormorant Garamond',serif;
+    line-height:1;
   }
   #audio-gate .monogram span{font-style:italic;font-size:.7em}
+  #audio-gate .divider{
+    background:var(--gold-light);
+    margin:28px auto;
+  }
+  #audio-gate .divider::after{background:var(--navy)}
   #audio-gate h2{
     font-family:'Cormorant Garamond',serif;font-weight:400;
-    font-size:clamp(1.3rem,4.5vw,1.7rem);
-    color:#fff;margin:18px 0 10px;
+    font-size:clamp(1.5rem,5vw,2rem);
+    color:#fff;margin:0 0 14px;
+    letter-spacing:.01em;
   }
   #audio-gate p{
     font-family:'Jost',sans-serif;font-weight:300;
-    font-size:.92rem;color:#B8B6D0;line-height:1.6;
+    font-size:.95rem;color:#B8B6D0;line-height:1.7;
   }
   #audio-gate .gate-btn{
-    display:inline-block;margin-top:28px;
-    padding:14px 38px;
+    display:inline-block;margin-top:34px;
+    padding:15px 42px;
     border:1px solid var(--gold);
     color:var(--gold);
-    font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
     border-radius:2px;
     transition:all .3s ease;
+    font-weight:500;
   }
-  #audio-gate:hover .gate-btn{background:var(--gold);color:var(--navy)}
+  #audio-gate:hover .gate-btn,
+  #audio-gate:active .gate-btn{
+    background:var(--gold);
+    color:var(--navy);
+  }
 
   /* ---------- REVEAL ---------- */
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
@@ -346,6 +366,17 @@
 </style>
 </head>
 <body>
+
+<!-- ══════════ OVERLAY D'ACCUEIL — premier écran ══════════ -->
+<div id="audio-gate" role="button" tabindex="0" aria-label="Démarrer l'expérience">
+  <div class="gate-inner">
+    <div class="monogram">K<span>&</span>R</div>
+    <div class="divider"></div>
+    <h2>Bienvenue</h2>
+    <p>Touchez l'écran pour découvrir<br>notre faire-part en musique.</p>
+    <span class="gate-btn">Entrer</span>
+  </div>
+</div>
 
 <!-- ══════════ HERO ══════════ -->
 <header class="hero">
@@ -595,16 +626,6 @@
   </svg>
 </button>
 
-<!-- Overlay affiché UNIQUEMENT si l'autoplay est bloqué par le navigateur -->
-<div id="audio-gate" role="button" tabindex="0" aria-label="Démarrer l'expérience">
-  <div class="gate-inner">
-    <div class="monogram">K<span>&</span>R</div>
-    <h2>Bienvenue</h2>
-    <p>Touchez l'écran pour découvrir notre faire-part en musique.</p>
-    <span class="gate-btn">Entrer</span>
-  </div>
-</div>
-
 <script>
 /* ---------- COMPTE À REBOURS ---------- */
 const TARGET = new Date('2026-11-24T10:00:00').getTime();
@@ -669,18 +690,21 @@ form.addEventListener('submit', async (e)=>{
 });
 
 /* ══════════════════════════════════════════════════════════
-   MUSIQUE — Stratégie "autoplay maximal"
-   1. Tentative immédiate au chargement
-   2. Si bloqué → tentative à la 1ʳᵉ interaction (clic, scroll, mousemove, touch, clavier)
-   3. Si toujours bloqué après 1,2 s → overlay "Entrer" en dernier recours
+   MUSIQUE — Overlay d'accueil en premier écran
+   L'utilisateur voit l'overlay dès l'arrivée.
+   Un tap sur l'overlay :
+     1) démarre la musique (geste utilisateur → lecture garantie)
+     2) fait disparaître l'overlay en fondu
+   Ensuite, le bouton flottant permet couper/réactiver.
    ══════════════════════════════════════════════════════════ */
-const audio   = document.getElementById('bg-music');
-const mBtn    = document.getElementById('music-btn');
-const iOn     = document.getElementById('icon-on');
-const iOff    = document.getElementById('icon-off');
-const gate    = document.getElementById('audio-gate');
-let   playing = false;
+const audio    = document.getElementById('bg-music');
+const mBtn     = document.getElementById('music-btn');
+const iOn      = document.getElementById('icon-on');
+const iOff     = document.getElementById('icon-off');
+const gate     = document.getElementById('audio-gate');
+let   playing  = false;
 let   userMuted = false;
+let   gateOpened = false;   // évite les doubles déclenchements
 
 audio.volume = 0.55;
 
@@ -699,9 +723,8 @@ function setIcon(isPlaying){
   }
 }
 
-/* Tentative de lecture */
+/* Tentative de lecture (renvoie true si succès) */
 async function tryPlay(){
-  if(userMuted) return false;
   try {
     audio.muted = false;
     await audio.play();
@@ -715,38 +738,28 @@ async function tryPlay(){
   }
 }
 
-/* 1. Tentative immédiate (au cas où le navigateur l'autorise) */
-tryPlay();
+/* Ouvrir la porte : lancer la musique + masquer l'overlay */
+async function openGate(){
+  if(gateOpened) return;
+  gateOpened = true;
+  userMuted  = false;
 
-/* 2. Tentatives sur TOUTE interaction possible */
-const events = ['click','touchstart','touchend','keydown','mousemove','mousedown','scroll','wheel','pointerdown'];
-function onAnyInteraction(){
-  if(playing || userMuted) return;
-  tryPlay().then(ok => {
-    if(ok){
-      events.forEach(e => window.removeEventListener(e, onAnyInteraction, true));
-      gate.classList.remove('show');
-    }
-  });
+  // Le geste utilisateur garantit le succès de la lecture
+  await tryPlay();
+
+  // Fondu de sortie de l'overlay
+  gate.classList.add('hide');
+  setTimeout(() => { gate.style.display = 'none'; }, 750);
 }
-events.forEach(e => window.addEventListener(e, onAnyInteraction, { passive: true, capture: true }));
 
-/* 3. Overlay de secours après 1,2 s si toujours rien */
-setTimeout(() => {
-  if(!playing && !userMuted) gate.classList.add('show');
-}, 1200);
+/* Écouteurs sur l'overlay (clic, toucher, clavier) */
+gate.addEventListener('click', openGate);
+gate.addEventListener('touchstart', openGate, { passive: true });
+gate.addEventListener('keydown', (e) => {
+  if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openGate(); }
+});
 
-/* Clic sur l'overlay → démarre la musique et le referme */
-function closeGate(){
-  userMuted = false;
-  tryPlay().then(ok => {
-    if(ok) gate.classList.remove('show');
-  });
-}
-gate.addEventListener('click', closeGate);
-gate.addEventListener('touchstart', closeGate, { passive: true });
-
-/* 4. Bouton play/pause */
+/* Bouton play/pause flottant (visible une fois l'overlay fermé) */
 mBtn.addEventListener('click', async (e) => {
   e.stopPropagation();
   if(playing){
@@ -760,15 +773,19 @@ mBtn.addEventListener('click', async (e) => {
   }
 });
 
-/* 5. Synchro icône si le navigateur met en pause tout seul */
+/* Synchronisation de l'icône si le navigateur met en pause tout seul */
 audio.addEventListener('pause', () => {
   if(!userMuted){ playing = false; setIcon(false); }
 });
 audio.addEventListener('play', () => {
   playing = true;
   setIcon(true);
-  gate.classList.remove('show');
 });
+
+/* Tentative silencieuse d'autoplay en arrière-plan :
+   si le navigateur l'autorise, la musique sera déjà lancée
+   au moment où l'utilisateur touchera l'overlay. */
+window.addEventListener('DOMContentLoaded', () => { tryPlay(); });
 </script>
 
 </body>
