@@ -534,7 +534,7 @@
 </footer>
 
 <audio id="bg-music" loop preload="none">
-  <source src="/musique.mp3" type="audio/mpeg">
+  <source src="/musique.mp4" type="audio/mpeg">
 </audio>
 <button id="music-btn" aria-label="Activer la musique" title="Musique">
   <svg id="icon-off" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><line x1="3" y1="3" x2="21" y2="21"/></svg>
@@ -615,7 +615,7 @@ mBtn.addEventListener('click', ()=>{
   if(playing){ audio.pause(); iOn.style.display='none'; iOff.style.display='block'; }
   else{
     audio.play().then(()=>{ iOn.style.display='block'; iOff.style.display='none'; })
-                .catch(()=> console.warn('Aucun fichier musique.mp3 trouvé.'));
+                .catch(()=> console.warn('Aucun fichier musique.mp4 trouvé.'));
   }
   playing = !playing;
 });
