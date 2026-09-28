@@ -148,8 +148,9 @@
   .story .quote::after{content:'"';bottom:-14px;right:-10px}
   .story p{
     color:var(--muted);font-size:.95rem;
-    max-width:520px;margin:34px auto 0;
+    max-width:560px;margin:24px auto 0;
   }
+  .story p:first-of-type{margin-top:34px}
 
   /* ---------- PROGRAMME ---------- */
   .programme{
@@ -404,10 +405,13 @@
     <p class="section-sub reveal">Notre histoire</p>
     <h2 class="section-title reveal">Là où tout a commencé</h2>
     <div class="divider reveal"></div>
-    <p class="quote reveal">Nous nous sommes rencontrés derrière l'église.</p>
     <p class="reveal">
-      Un lieu simple, un moment ordinaire… et pourtant le début de toute une vie.
-      Aujourd'hui, nous vous invitons à célébrer avec nous ce chemin parcouru ensemble.
+      À partir d'un mot d'encouragement pour apporter son soutien lors de la perte d'un être cher,
+      puis d'un autre pour souhaiter un heureux anniversaire, est née une histoire d'amour sincère,
+      pure et vraie.
+    </p>
+    <p class="quote reveal" style="margin-top:40px">
+      Comme quoi souvent c'est à partir d'un geste simple et humain qu'on gagne le cœur d'une personne.
     </p>
   </div>
 </section>
@@ -427,7 +431,7 @@
           <p>Cérémonie traditionnelle et familiale, en intimité avec nos proches.</p>
           <div class="event-meta">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-            <span>À partir de 10h00</span>
+            <span>À partir de 6h00</span>
           </div>
         </div>
       </article>
@@ -437,7 +441,7 @@
         <div class="event-body">
           <p class="event-day">Jeudi 26 Novembre</p>
           <h3>Mariage religieux musulman</h3>
-          <p>Bénédiction religieuse suivie d'un moment de partage.</p>
+          <p>Bénédiction religieuse.</p>
           <div class="event-meta">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
             <span>À partir de 14h00</span>
@@ -450,7 +454,7 @@
         <div class="event-body">
           <p class="event-day">Samedi 28 Novembre</p>
           <h3>Mariage civil &amp; religieux catholique</h3>
-          <p>Mairie de Dafra à 9h, puis Église Saint Vincent de Paul à 11h.</p>
+          <p>Mairie de Dafra à 9h, Église Saint Vincent de Paul à 10h30, puis lunch à 13h.</p>
           <div class="event-meta">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
             <span>À partir de 9h00</span>
@@ -470,7 +474,7 @@
 
     <!-- 1. Mardi 24 -->
     <div class="venue reveal">
-      <span class="venue-day">Mardi 24 Novembre · 10h00</span>
+      <span class="venue-day">Mardi 24 Novembre · 6h00</span>
       <h3>Fermeture de la tête de la mariée</h3>
       <p>Cérémonie privée, en famille. Lieu communiqué ultérieurement.</p>
       <a class="btn" target="_blank" rel="noopener"
@@ -479,14 +483,14 @@
       </a>
     </div>
 
-    <!-- 2. Jeudi 26 -->
+    <!-- 2. Jeudi 26 — Mosquée -->
     <div class="venue reveal">
       <span class="venue-day">Jeudi 26 Novembre · 14h00</span>
       <h3>Mariage religieux musulman</h3>
-      <p>Lieu communiqué ultérieurement.</p>
+      <p>Mosquée — Secteur 21, vers la base aérienne.</p>
       <a class="btn" target="_blank" rel="noopener"
-         href="https://www.google.com/maps/search/?api=1&query=Bobo-Dioulasso">
-         Voir la ville
+         href="https://www.google.com/maps/place/11%C2%B010'40.8%22N+4%C2%B019'41.0%22W/@11.1780042,-4.3306382,17z/data=!3m1!4b1!4m4!3m3!8m2!3d11.1780042!4d-4.3280633?hl=fr&entry=ttu">
+         Ouvrir dans Maps
       </a>
     </div>
 
@@ -503,12 +507,23 @@
 
     <!-- 4. Samedi 28 — Église -->
     <div class="venue reveal">
-      <span class="venue-day">Samedi 28 Novembre · 11h00</span>
+      <span class="venue-day">Samedi 28 Novembre · 10h30</span>
       <h3>Église Saint Vincent de Paul</h3>
       <p>Célébration religieuse catholique.</p>
       <a class="btn" target="_blank" rel="noopener"
          href="https://www.google.com/maps/search/?api=1&query=Église+Saint+Vincent+de+Paul+Bobo-Dioulasso">
          Ouvrir dans Maps
+      </a>
+    </div>
+
+    <!-- 5. Samedi 28 — Lunch -->
+    <div class="venue reveal">
+      <span class="venue-day">Samedi 28 Novembre · 13h00</span>
+      <h3>Lunch</h3>
+      <p>Réception et repas de célébration. Lieu communiqué ultérieurement.</p>
+      <a class="btn" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/search/?api=1&query=Bobo-Dioulasso">
+         Voir la ville
       </a>
     </div>
   </div>
@@ -627,8 +642,8 @@
 </button>
 
 <script>
-/* ---------- COMPTE À REBOURS ---------- */
-const TARGET = new Date('2026-11-24T10:00:00').getTime();
+/* ---------- COMPTE À REBOURS (vers le 1er événement : mardi 24 nov, 6h) ---------- */
+const TARGET = new Date('2026-11-24T06:00:00').getTime();
 const cd = {d:document.getElementById('cd-d'),h:document.getElementById('cd-h'),
             m:document.getElementById('cd-m'),s:document.getElementById('cd-s')};
 function tick(){
@@ -691,11 +706,6 @@ form.addEventListener('submit', async (e)=>{
 
 /* ══════════════════════════════════════════════════════════
    MUSIQUE — Overlay d'accueil en premier écran
-   L'utilisateur voit l'overlay dès l'arrivée.
-   Un tap sur l'overlay :
-     1) démarre la musique (geste utilisateur → lecture garantie)
-     2) fait disparaître l'overlay en fondu
-   Ensuite, le bouton flottant permet couper/réactiver.
    ══════════════════════════════════════════════════════════ */
 const audio    = document.getElementById('bg-music');
 const mBtn     = document.getElementById('music-btn');
@@ -704,11 +714,10 @@ const iOff     = document.getElementById('icon-off');
 const gate     = document.getElementById('audio-gate');
 let   playing  = false;
 let   userMuted = false;
-let   gateOpened = false;   // évite les doubles déclenchements
+let   gateOpened = false;
 
 audio.volume = 0.55;
 
-/* Icône + accessibilité */
 function setIcon(isPlaying){
   if(isPlaying){
     iOn.style.display  = 'block';
@@ -723,7 +732,6 @@ function setIcon(isPlaying){
   }
 }
 
-/* Tentative de lecture (renvoie true si succès) */
 async function tryPlay(){
   try {
     audio.muted = false;
@@ -738,28 +746,23 @@ async function tryPlay(){
   }
 }
 
-/* Ouvrir la porte : lancer la musique + masquer l'overlay */
 async function openGate(){
   if(gateOpened) return;
   gateOpened = true;
   userMuted  = false;
 
-  // Le geste utilisateur garantit le succès de la lecture
   await tryPlay();
 
-  // Fondu de sortie de l'overlay
   gate.classList.add('hide');
   setTimeout(() => { gate.style.display = 'none'; }, 750);
 }
 
-/* Écouteurs sur l'overlay (clic, toucher, clavier) */
 gate.addEventListener('click', openGate);
 gate.addEventListener('touchstart', openGate, { passive: true });
 gate.addEventListener('keydown', (e) => {
   if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openGate(); }
 });
 
-/* Bouton play/pause flottant (visible une fois l'overlay fermé) */
 mBtn.addEventListener('click', async (e) => {
   e.stopPropagation();
   if(playing){
@@ -773,7 +776,6 @@ mBtn.addEventListener('click', async (e) => {
   }
 });
 
-/* Synchronisation de l'icône si le navigateur met en pause tout seul */
 audio.addEventListener('pause', () => {
   if(!userMuted){ playing = false; setIcon(false); }
 });
@@ -782,9 +784,6 @@ audio.addEventListener('play', () => {
   setIcon(true);
 });
 
-/* Tentative silencieuse d'autoplay en arrière-plan :
-   si le navigateur l'autorise, la musique sera déjà lancée
-   au moment où l'utilisateur touchera l'overlay. */
 window.addEventListener('DOMContentLoaded', () => { tryPlay(); });
 </script>
 
