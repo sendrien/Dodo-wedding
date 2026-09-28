@@ -5,28 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kassian & Rimbésida — Novembre 2026</title>
 <meta name="description" content="Faire-part de mariage — 24, 26 et 28 novembre 2026 — Bobo-Dioulasso">
-<meta name="theme-color" content="#0B0B0D">
+<meta name="theme-color" content="#03045E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --black:#0B0B0D;
-    --black-soft:#141416;
-    --black-2:#1A1A1D;
+    --navy:#03045E;
+    --navy-deep:#020347;
+    --navy-soft:#0A0B7A;
+    --navy-panel:#050670;
     --gold:#C9A227;
     --gold-light:#E8CF7A;
     --gold-deep:#8B6F14;
     --cream:#F2EBD8;
-    --cream-muted:#9A9180;
-    --line:rgba(201,162,39,.28);
-    --line-soft:rgba(201,162,39,.12);
-    --burgundy:#5C1F1F;
+    --cream-muted:#9A96B8;
+    --line:rgba(201,162,39,.32);
+    --line-soft:rgba(201,162,39,.15);
+    --line-navy:rgba(242,235,216,.08);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    background:var(--black);
+    background:var(--navy);
     color:var(--cream);
     font-family:'Cormorant Garamond',serif;
     font-weight:400;
@@ -48,14 +49,8 @@
   body > *{position:relative;z-index:1}
 
   /* ============================================================
-     DÉCORATIONS ART DÉCO (patterns géométriques)
+     DÉCORATIONS ART DÉCO
      ============================================================ */
-  .deco-sunburst{
-    position:absolute;
-    left:50%;transform:translateX(-50%);
-    pointer-events:none;
-    opacity:.5;
-  }
   .deco-chevron{
     display:block;
     width:100%;height:14px;
@@ -66,31 +61,6 @@
     background-position:0 0;
     opacity:.35;
   }
-  .deco-flute{
-    display:flex;gap:3px;justify-content:center;align-items:center;
-    height:14px;
-  }
-  .deco-flute span{
-    width:2px;height:100%;background:var(--gold);opacity:.35;
-  }
-  .deco-arc{
-    display:block;
-    width:100%;height:30px;
-    border-top:1px solid var(--line);
-    position:relative;
-  }
-  .deco-arc::before,.deco-arc::after{
-    content:'';position:absolute;top:-1px;
-    width:12px;height:12px;
-    border:1px solid var(--line);
-    border-radius:50%;
-    background:var(--black);
-    top:-6px;
-  }
-  .deco-arc::before{left:calc(50% - 20px)}
-  .deco-arc::after{right:calc(50% - 20px)}
-
-  /* Ornement central en losange */
   .deco-diamond{
     display:inline-block;
     width:8px;height:8px;
@@ -109,13 +79,16 @@
     position:relative;
     overflow:hidden;
     display:flex;flex-direction:column;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(201,162,39,.10) 0%, transparent 55%),
+      var(--navy);
   }
   .hero .sunburst{
     position:absolute;
     top:-80px;left:50%;transform:translateX(-50%);
     width:900px;height:900px;
     max-width:none;
-    opacity:.12;
+    opacity:.15;
   }
   .hero::after{
     content:'';position:absolute;inset:16px;
@@ -353,11 +326,15 @@
   /* ============================================================
      HISTOIRE
      ============================================================ */
-  .story{background:var(--black-soft)}
+  .story{
+    background:var(--navy-deep);
+    border-top:1px solid var(--line-soft);
+    border-bottom:1px solid var(--line-soft);
+  }
   .story::before{
     content:'';position:absolute;inset:0;
     background:
-      radial-gradient(ellipse at center, rgba(201,162,39,.05) 0%, transparent 60%);
+      radial-gradient(ellipse at center, rgba(201,162,39,.06) 0%, transparent 60%);
     pointer-events:none;
   }
   .story-grid{
@@ -413,21 +390,21 @@
   }
 
   /* ============================================================
-     PROGRAMME — 3 panneaux verticaux Art Déco
+     PROGRAMME — 3 panneaux Art Déco
      ============================================================ */
-  .programme{background:var(--black)}
+  .programme{background:var(--navy)}
   .panels{
     display:grid;grid-template-columns:repeat(3,1fr);
     gap:0;
     border:1px solid var(--line);
     position:relative;
-    background:var(--black-soft);
+    background:var(--navy-panel);
   }
   .panels::before,
   .panels::after{
     content:'';position:absolute;
     width:14px;height:14px;
-    background:var(--black);border:1px solid var(--gold);
+    background:var(--navy);border:1px solid var(--gold);
     transform:rotate(45deg);
     top:-8px;
   }
@@ -443,7 +420,7 @@
   .panel:not(:last-child){
     border-right:1px solid var(--line);
   }
-  .panel:hover{background:rgba(201,162,39,.035)}
+  .panel:hover{background:rgba(201,162,39,.045)}
 
   .panel-arc{
     width:56px;height:28px;
@@ -529,12 +506,17 @@
   /* ============================================================
      LIEUX
      ============================================================ */
-  .venues{background:var(--black-soft);position:relative}
+  .venues{
+    background:var(--navy-deep);
+    position:relative;
+    border-top:1px solid var(--line-soft);
+    border-bottom:1px solid var(--line-soft);
+  }
   .venues::before{
     content:'';position:absolute;inset:0;
     background-image:
-      linear-gradient(45deg, transparent 49%, rgba(201,162,39,.03) 49%, rgba(201,162,39,.03) 51%, transparent 51%),
-      linear-gradient(-45deg, transparent 49%, rgba(201,162,39,.03) 49%, rgba(201,162,39,.03) 51%, transparent 51%);
+      linear-gradient(45deg, transparent 49%, rgba(201,162,39,.035) 49%, rgba(201,162,39,.035) 51%, transparent 51%),
+      linear-gradient(-45deg, transparent 49%, rgba(201,162,39,.035) 49%, rgba(201,162,39,.035) 51%, transparent 51%);
     background-size:60px 60px;
     pointer-events:none;
     opacity:.6;
@@ -560,12 +542,12 @@
   .venue-row:last-child{border-bottom:none}
   .venue-row:hover{
     padding-left:24px;padding-right:24px;
-    background:rgba(201,162,39,.03);
+    background:rgba(201,162,39,.05);
   }
   .venue-row:hover .venue-arrow{
     transform:translateX(6px);
     background:var(--gold);
-    color:var(--black);
+    color:var(--navy);
   }
 
   .venue-left{
@@ -626,13 +608,13 @@
      RSVP
      ============================================================ */
   .rsvp{
-    background:var(--black);
+    background:var(--navy);
     position:relative;
   }
   .rsvp::before{
     content:'';position:absolute;inset:0;
     background:
-      radial-gradient(circle at 50% 0%, rgba(201,162,39,.08) 0%, transparent 50%);
+      radial-gradient(circle at 50% 0%, rgba(201,162,39,.10) 0%, transparent 50%);
     pointer-events:none;
   }
   .rsvp-lead{
@@ -655,13 +637,13 @@
     border:1px solid var(--line);
     padding:56px 48px;
     position:relative;
-    background:var(--black-soft);
+    background:var(--navy-panel);
   }
   .form-frame::before,
   .form-frame::after{
     content:'';position:absolute;
     width:14px;height:14px;
-    background:var(--black);border:1px solid var(--gold);
+    background:var(--navy);border:1px solid var(--gold);
     transform:rotate(45deg);
   }
   .form-frame::before{top:-8px;left:calc(50% - 7px)}
@@ -694,7 +676,7 @@
     border-bottom-color:var(--gold);
   }
   input::placeholder,textarea::placeholder{
-    color:#4E4B42;
+    color:#4A4A78;
     font-style:italic;
     font-family:'Cormorant Garamond',serif;
   }
@@ -710,11 +692,11 @@
     cursor:pointer;
     transition:all .3s ease;
     position:relative;
-    background:rgba(255,255,255,.01);
+    background:rgba(255,255,255,.012);
   }
   .check:hover{
     border-color:var(--line);
-    background:rgba(201,162,39,.04);
+    background:rgba(201,162,39,.06);
   }
   .check input{
     appearance:none;-webkit-appearance:none;
@@ -733,7 +715,7 @@
     content:'';
     position:absolute;
     inset:4px;
-    background:var(--black);
+    background:var(--navy);
     border-radius:1px;
   }
   .check span{
@@ -770,7 +752,7 @@
   .btn-submit::after{
     content:'';position:absolute;
     width:6px;height:6px;
-    background:var(--black);
+    background:var(--navy);
     border:1px solid var(--gold);
     transform:rotate(45deg);
     top:50%;margin-top:-3px;
@@ -779,7 +761,7 @@
   .btn-submit::after{right:-3px}
   .btn-submit:hover{
     background:var(--gold);
-    color:var(--black);
+    color:var(--navy);
     letter-spacing:.44em;
   }
   .btn-submit:disabled{opacity:.5;cursor:wait}
@@ -791,14 +773,14 @@
     padding:70px 40px;
     border:1px solid var(--line);
     max-width:600px;margin:0 auto;
-    background:var(--black-soft);
+    background:var(--navy-panel);
     position:relative;
   }
   #rsvp-success::before,
   #rsvp-success::after{
     content:'';position:absolute;
     width:14px;height:14px;
-    background:var(--black);border:1px solid var(--gold);
+    background:var(--navy);border:1px solid var(--gold);
     transform:rotate(45deg);
   }
   #rsvp-success::before{top:-8px;left:calc(50% - 7px)}
@@ -838,7 +820,7 @@
      ============================================================ */
   footer{
     padding:90px 32px 70px;
-    background:var(--black-soft);
+    background:var(--navy-deep);
     text-align:center;
     border-top:1px solid var(--line-soft);
     position:relative;
@@ -882,7 +864,7 @@
   #music-btn{
     position:fixed;bottom:26px;right:26px;z-index:50;
     width:52px;height:52px;
-    background:var(--black-soft);
+    background:var(--navy-deep);
     border:1px solid var(--gold);
     display:flex;align-items:center;justify-content:center;
     cursor:pointer;
@@ -895,7 +877,7 @@
     pointer-events:none;
   }
   #music-btn:hover{background:var(--gold)}
-  #music-btn:hover svg{stroke:var(--black)}
+  #music-btn:hover svg{stroke:var(--navy)}
   #music-btn svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.5;transition:stroke .3s ease}
 
   /* ============================================================
@@ -904,7 +886,7 @@
   #audio-gate{
     display:flex;
     position:fixed;inset:0;z-index:100;
-    background:var(--black);
+    background:var(--navy);
     align-items:center;justify-content:center;
     text-align:center;
     padding:32px;
@@ -927,7 +909,7 @@
     position:absolute;
     top:50%;left:50%;transform:translate(-50%,-50%);
     width:1000px;height:1000px;
-    opacity:.08;
+    opacity:.12;
     pointer-events:none;
   }
   #audio-gate.hide{opacity:0;pointer-events:none}
@@ -1015,7 +997,7 @@
   #audio-gate .gate-btn::after{
     content:'';position:absolute;
     width:6px;height:6px;
-    background:var(--black);
+    background:var(--navy);
     border:1px solid var(--gold);
     transform:rotate(45deg);
     top:50%;margin-top:-3px;
@@ -1025,7 +1007,7 @@
   #audio-gate:hover .gate-btn,
   #audio-gate:active .gate-btn{
     background:var(--gold);
-    color:var(--black);
+    color:var(--navy);
     letter-spacing:.44em;
   }
   #audio-gate .gate-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
@@ -1132,7 +1114,6 @@
 <div id="audio-gate" role="button" tabindex="0" aria-label="Démarrer l'expérience">
   <svg class="gate-sunburst" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
     <g stroke="#C9A227" stroke-width="0.4" fill="none">
-      <!-- Rayons de soleil -->
       <line x1="200" y1="200" x2="200" y2="0"/>
       <line x1="200" y1="200" x2="341" y2="59"/>
       <line x1="200" y1="200" x2="400" y2="200"/>
@@ -1149,7 +1130,6 @@
       <line x1="200" y1="200" x2="30" y2="300"/>
       <line x1="200" y1="200" x2="30" y2="100"/>
       <line x1="200" y1="200" x2="100" y2="30"/>
-      <!-- Cercles concentriques -->
       <circle cx="200" cy="200" r="40"/>
       <circle cx="200" cy="200" r="80"/>
       <circle cx="200" cy="200" r="120"/>
