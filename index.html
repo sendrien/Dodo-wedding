@@ -5,30 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kassian & Rimbésida — Novembre 2026</title>
 <meta name="description" content="Faire-part de mariage — 24, 26 et 28 novembre 2026 — Bobo-Dioulasso">
-<meta name="theme-color" content="#03045E">
+<meta name="theme-color" content="#F4EDE1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
+    /* Couleur désignée - utilisée en accent fort */
     --navy:#03045E;
     --navy-deep:#020347;
-    --navy-soft:#0A0B7A;
-    --navy-panel:#050670;
-    --gold:#C9A227;
-    --gold-light:#E8CF7A;
+
+    /* Palette claire dominante */
+    --ivory:#F4EDE1;
+    --ivory-soft:#FAF5EA;
+    --paper:#FFFFFF;
+    --cream:#FBF7EE;
+
+    /* Or pour les ornements */
+    --gold:#B8934A;
+    --gold-light:#D4B876;
     --gold-deep:#8B6F14;
-    --cream:#F2EBD8;
-    --cream-muted:#9A96B8;
-    --line:rgba(201,162,39,.32);
-    --line-soft:rgba(201,162,39,.15);
-    --line-navy:rgba(242,235,216,.08);
+
+    /* Textes */
+    --ink:#1A1A2E;
+    --muted:#6B6880;
+    --muted-light:#8B8899;
+
+    /* Lignes */
+    --line:rgba(3,4,94,.18);
+    --line-soft:rgba(3,4,94,.08);
+    --line-gold:rgba(184,147,74,.35);
+    --line-gold-soft:rgba(184,147,74,.18);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    background:var(--navy);
-    color:var(--cream);
+    background:var(--ivory);
+    color:var(--ink);
     font-family:'Cormorant Garamond',serif;
     font-weight:400;
     line-height:1.7;
@@ -44,23 +57,13 @@
   body::before{
     content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     background:
-      repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(201,162,39,.012) 2px, rgba(201,162,39,.012) 3px);
+      repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(3,4,94,.010) 2px, rgba(3,4,94,.010) 3px);
   }
   body > *{position:relative;z-index:1}
 
   /* ============================================================
-     DÉCORATIONS ART DÉCO
+     DÉCORATIONS
      ============================================================ */
-  .deco-chevron{
-    display:block;
-    width:100%;height:14px;
-    background-image:
-      linear-gradient(135deg, var(--gold) 25%, transparent 25%),
-      linear-gradient(225deg, var(--gold) 25%, transparent 25%);
-    background-size:14px 14px;
-    background-position:0 0;
-    opacity:.35;
-  }
   .deco-diamond{
     display:inline-block;
     width:8px;height:8px;
@@ -71,7 +74,7 @@
   }
 
   /* ============================================================
-     HERO
+     HERO — fond ivoire clair
      ============================================================ */
   .hero{
     min-height:100svh;
@@ -80,15 +83,15 @@
     overflow:hidden;
     display:flex;flex-direction:column;
     background:
-      radial-gradient(ellipse at 50% 0%, rgba(201,162,39,.10) 0%, transparent 55%),
-      var(--navy);
+      radial-gradient(ellipse at 50% 0%, rgba(184,147,74,.10) 0%, transparent 55%),
+      var(--ivory);
   }
   .hero .sunburst{
     position:absolute;
     top:-80px;left:50%;transform:translateX(-50%);
     width:900px;height:900px;
     max-width:none;
-    opacity:.15;
+    opacity:.10;
   }
   .hero::after{
     content:'';position:absolute;inset:16px;
@@ -107,21 +110,21 @@
     font-family:'Outfit',sans-serif;
     font-size:.68rem;font-weight:400;
     letter-spacing:.34em;text-transform:uppercase;
-    color:var(--gold);
+    color:var(--navy);
     padding:0 8px;
   }
   .hero-nav .brand{
     font-family:'Italiana',serif;
     font-size:1.5rem;
     letter-spacing:.08em;
-    color:var(--gold-light);
+    color:var(--navy);
   }
   .hero-nav .brand em{
     font-style:normal;color:var(--gold);
     margin:0 .2em;
   }
   .hero-nav .nav-mid{
-    color:var(--cream-muted);
+    color:var(--muted);
   }
 
   .hero-body{
@@ -134,14 +137,14 @@
 
   .hero-kicker{
     font-family:'Outfit',sans-serif;
-    font-size:.68rem;font-weight:400;
+    font-size:.68rem;font-weight:500;
     letter-spacing:.5em;text-transform:uppercase;
     color:var(--gold);
     margin-bottom:34px;
     display:flex;align-items:center;gap:18px;
   }
   .hero-kicker::before,.hero-kicker::after{
-    content:'';width:40px;height:1px;background:var(--gold);opacity:.5;
+    content:'';width:40px;height:1px;background:var(--gold);opacity:.6;
   }
 
   .hero-names{
@@ -149,7 +152,7 @@
     font-size:clamp(2.4rem,7.5vw,4.6rem);
     line-height:1.05;
     letter-spacing:.02em;
-    color:var(--cream);
+    color:var(--navy);
     margin-bottom:0;
   }
   .hero-names .family{
@@ -159,12 +162,12 @@
     text-transform:uppercase;
     color:var(--gold);
     font-family:'Outfit',sans-serif;
-    font-weight:300;
+    font-weight:500;
     margin-bottom:10px;
   }
   .hero-names .first{
     display:block;
-    color:var(--cream);
+    color:var(--navy);
     margin-bottom:4px;
   }
 
@@ -176,46 +179,45 @@
     color:var(--gold);
   }
   .hero-amp::before,.hero-amp::after{
-    content:'';flex:1;height:1px;background:var(--gold);opacity:.4;
+    content:'';flex:1;height:1px;background:var(--gold);opacity:.5;
   }
   .hero-amp span{
     font-family:'Italiana',serif;
     font-size:1.6rem;
-    color:var(--gold-light);
+    color:var(--gold);
   }
 
   .hero-mono{
     font-family:'Italiana',serif;
     font-size:clamp(3.6rem,15vw,6.4rem);
     line-height:.9;
-    color:var(--gold);
+    color:var(--navy);
     margin:16px 0 20px;
     letter-spacing:.04em;
   }
   .hero-mono em{
     font-style:normal;
-    color:var(--gold-light);
+    color:var(--gold);
     font-size:.85em;
     margin:0 .1em;
-    opacity:.85;
   }
 
   .hero-date{
     font-family:'Outfit',sans-serif;
     font-size:.72rem;font-weight:400;
     letter-spacing:.44em;text-transform:uppercase;
-    color:var(--cream-muted);
+    color:var(--muted);
     margin-top:8px;
   }
   .hero-date strong{
-    color:var(--cream);font-weight:400;
+    color:var(--navy);font-weight:500;
   }
 
   .hero-location{
     font-family:'Cormorant Garamond',serif;
     font-style:italic;
     font-size:1.05rem;
-    color:var(--gold-light);
+    color:var(--gold);
     margin-top:6px;
   }
 
@@ -253,14 +255,14 @@
     font-family:'Italiana',serif;
     font-size:clamp(1.9rem,5.5vw,2.6rem);
     line-height:1;
-    color:var(--gold-light);
+    color:var(--navy);
     font-variant-numeric:tabular-nums;
   }
   .cd-lbl{
     font-family:'Outfit',sans-serif;
     font-size:.56rem;font-weight:400;
     letter-spacing:.32em;text-transform:uppercase;
-    color:var(--cream-muted);
+    color:var(--muted);
     margin-top:10px;
   }
 
@@ -270,7 +272,7 @@
     font-family:'Outfit',sans-serif;
     font-size:.62rem;font-weight:400;
     letter-spacing:.34em;text-transform:uppercase;
-    color:var(--cream-muted);
+    color:var(--muted);
     padding:0 8px;
   }
   .hero-footer span{display:flex;align-items:center;gap:14px}
@@ -288,7 +290,7 @@
   .section-top{
     display:flex;justify-content:center;align-items:center;
     margin-bottom:60px;
-    color:var(--gold);
+    color:var(--navy);
   }
   .section-top .line{
     flex:1;height:1px;background:var(--line);max-width:160px;
@@ -298,12 +300,13 @@
     font-size:1.3rem;
     padding:0 24px;
     letter-spacing:.1em;
+    color:var(--gold);
   }
   .section-top .label{
     font-family:'Outfit',sans-serif;
-    font-size:.62rem;font-weight:400;
+    font-size:.62rem;font-weight:500;
     letter-spacing:.4em;text-transform:uppercase;
-    color:var(--cream-muted);
+    color:var(--navy);
     padding:0 24px;
   }
 
@@ -315,7 +318,7 @@
     font-family:'Italiana',serif;
     font-size:clamp(2.2rem,6vw,3.6rem);
     line-height:1.1;
-    color:var(--cream);
+    color:var(--navy);
     letter-spacing:.02em;
   }
   .section-head h2 em{
@@ -324,17 +327,17 @@
   }
 
   /* ============================================================
-     HISTOIRE
+     HISTOIRE — fond blanc cassé
      ============================================================ */
   .story{
-    background:var(--navy-deep);
+    background:var(--cream);
     border-top:1px solid var(--line-soft);
     border-bottom:1px solid var(--line-soft);
   }
   .story::before{
     content:'';position:absolute;inset:0;
     background:
-      radial-gradient(ellipse at center, rgba(201,162,39,.06) 0%, transparent 60%);
+      radial-gradient(ellipse at center, rgba(184,147,74,.06) 0%, transparent 60%);
     pointer-events:none;
   }
   .story-grid{
@@ -345,7 +348,7 @@
     font-family:'Cormorant Garamond',serif;
     font-size:clamp(1.15rem,2.8vw,1.45rem);
     line-height:1.75;
-    color:var(--cream);
+    color:var(--ink);
     text-align:justify;
     font-weight:400;
   }
@@ -354,7 +357,7 @@
     font-family:'Italiana',serif;
     font-size:5.4rem;
     line-height:.82;
-    color:var(--gold);
+    color:var(--navy);
     padding:6px 16px 0 0;
   }
 
@@ -366,7 +369,7 @@
   }
   .story-ornament::before,
   .story-ornament::after{
-    content:'';flex:1;height:1px;background:var(--gold);opacity:.3;
+    content:'';flex:1;height:1px;background:var(--gold);opacity:.35;
   }
   .story-ornament span{
     padding:0 20px;
@@ -383,28 +386,29 @@
     font-style:italic;
     font-size:clamp(1.25rem,3vw,1.6rem);
     line-height:1.55;
-    color:var(--gold-light);
+    color:var(--navy);
     font-weight:400;
     position:relative;
     padding:0 20px;
   }
 
   /* ============================================================
-     PROGRAMME — 3 panneaux Art Déco
+     PROGRAMME — fond ivoire
      ============================================================ */
-  .programme{background:var(--navy)}
+  .programme{background:var(--ivory)}
   .panels{
     display:grid;grid-template-columns:repeat(3,1fr);
     gap:0;
     border:1px solid var(--line);
     position:relative;
-    background:var(--navy-panel);
+    background:var(--paper);
+    box-shadow:0 20px 60px rgba(3,4,94,.06);
   }
   .panels::before,
   .panels::after{
     content:'';position:absolute;
     width:14px;height:14px;
-    background:var(--navy);border:1px solid var(--gold);
+    background:var(--ivory);border:1px solid var(--gold);
     transform:rotate(45deg);
     top:-8px;
   }
@@ -418,9 +422,9 @@
     transition:background .5s ease;
   }
   .panel:not(:last-child){
-    border-right:1px solid var(--line);
+    border-right:1px solid var(--line-soft);
   }
-  .panel:hover{background:rgba(201,162,39,.045)}
+  .panel:hover{background:rgba(184,147,74,.05)}
 
   .panel-arc{
     width:56px;height:28px;
@@ -443,14 +447,14 @@
     font-family:'Italiana',serif;
     font-size:clamp(3.4rem,10vw,5.4rem);
     line-height:.9;
-    color:var(--gold);
+    color:var(--navy);
     margin-bottom:6px;
   }
   .panel-weekday{
     font-family:'Outfit',sans-serif;
-    font-size:.6rem;font-weight:400;
+    font-size:.6rem;font-weight:500;
     letter-spacing:.4em;text-transform:uppercase;
-    color:var(--cream-muted);
+    color:var(--gold);
     margin-bottom:24px;
   }
   .panel-divider{
@@ -471,7 +475,7 @@
     font-family:'Cormorant Garamond',serif;
     font-size:1.25rem;
     line-height:1.35;
-    color:var(--cream);
+    color:var(--navy);
     font-weight:500;
     letter-spacing:.01em;
     margin-bottom:14px;
@@ -482,14 +486,14 @@
     font-style:italic;
     font-size:.92rem;
     line-height:1.65;
-    color:var(--cream-muted);
+    color:var(--muted);
     margin-bottom:22px;
     min-height:3em;
   }
   .panel-time{
     font-family:'Italiana',serif;
     font-size:1.4rem;
-    color:var(--gold-light);
+    color:var(--navy);
     letter-spacing:.06em;
   }
   .panel-time small{
@@ -497,17 +501,17 @@
     font-family:'Outfit',sans-serif;
     font-style:normal;
     font-size:.54rem;
-    font-weight:400;
+    font-weight:500;
     letter-spacing:.34em;text-transform:uppercase;
-    color:var(--cream-muted);
+    color:var(--gold);
     margin-top:8px;
   }
 
   /* ============================================================
-     LIEUX
+     LIEUX — fond blanc cassé
      ============================================================ */
   .venues{
-    background:var(--navy-deep);
+    background:var(--cream);
     position:relative;
     border-top:1px solid var(--line-soft);
     border-bottom:1px solid var(--line-soft);
@@ -515,8 +519,8 @@
   .venues::before{
     content:'';position:absolute;inset:0;
     background-image:
-      linear-gradient(45deg, transparent 49%, rgba(201,162,39,.035) 49%, rgba(201,162,39,.035) 51%, transparent 51%),
-      linear-gradient(-45deg, transparent 49%, rgba(201,162,39,.035) 49%, rgba(201,162,39,.035) 51%, transparent 51%);
+      linear-gradient(45deg, transparent 49%, rgba(3,4,94,.025) 49%, rgba(3,4,94,.025) 51%, transparent 51%),
+      linear-gradient(-45deg, transparent 49%, rgba(3,4,94,.025) 49%, rgba(3,4,94,.025) 51%, transparent 51%);
     background-size:60px 60px;
     pointer-events:none;
     opacity:.6;
@@ -527,13 +531,14 @@
     border-top:1px solid var(--line);
     border-bottom:1px solid var(--line);
     position:relative;z-index:2;
+    background:var(--paper);
   }
   .venue-row{
     display:grid;
     grid-template-columns:140px 1fr auto;
     align-items:center;
     gap:36px;
-    padding:38px 8px;
+    padding:38px 32px;
     border-bottom:1px solid var(--line-soft);
     text-decoration:none;color:inherit;
     transition:padding .4s ease,background .4s ease;
@@ -541,39 +546,39 @@
   }
   .venue-row:last-child{border-bottom:none}
   .venue-row:hover{
-    padding-left:24px;padding-right:24px;
-    background:rgba(201,162,39,.05);
+    background:rgba(184,147,74,.05);
   }
   .venue-row:hover .venue-arrow{
     transform:translateX(6px);
-    background:var(--gold);
-    color:var(--navy);
+    background:var(--navy);
+    color:#fff;
+    border-color:var(--navy);
   }
 
   .venue-left{
     display:flex;flex-direction:column;align-items:center;
     padding-right:32px;
-    border-right:1px solid var(--line);
+    border-right:1px solid var(--line-soft);
     text-align:center;
   }
   .venue-left .d{
     font-family:'Italiana',serif;
     font-size:2.4rem;
     line-height:1;
-    color:var(--gold);
+    color:var(--navy);
   }
   .venue-left .m{
     font-family:'Outfit',sans-serif;
-    font-size:.56rem;font-weight:400;
+    font-size:.56rem;font-weight:500;
     letter-spacing:.34em;text-transform:uppercase;
-    color:var(--cream-muted);
+    color:var(--gold);
     margin-top:8px;
   }
   .venue-left .t{
     font-family:'Cormorant Garamond',serif;
     font-style:italic;
     font-size:.88rem;
-    color:var(--gold-light);
+    color:var(--muted);
     margin-top:4px;
   }
 
@@ -582,7 +587,7 @@
     font-size:1.35rem;
     line-height:1.3;
     font-weight:500;
-    color:var(--cream);
+    color:var(--navy);
     margin-bottom:6px;
     letter-spacing:.005em;
   }
@@ -590,39 +595,46 @@
     font-family:'Cormorant Garamond',serif;
     font-style:italic;
     font-size:.9rem;
-    color:var(--cream-muted);
+    color:var(--muted);
   }
 
   .venue-arrow{
     width:52px;height:52px;
-    border:1px solid var(--gold);
+    border:1px solid var(--navy);
     border-radius:50%;
     display:flex;align-items:center;justify-content:center;
-    color:var(--gold);
+    color:var(--navy);
     transition:all .35s ease;
     flex-shrink:0;
   }
   .venue-arrow svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6}
 
   /* ============================================================
-     RSVP
+     RSVP — UNIQUE SECTION BLEUE (ancrage visuel)
      ============================================================ */
   .rsvp{
     background:var(--navy);
+    color:var(--cream);
     position:relative;
   }
   .rsvp::before{
     content:'';position:absolute;inset:0;
     background:
-      radial-gradient(circle at 50% 0%, rgba(201,162,39,.10) 0%, transparent 50%);
+      radial-gradient(circle at 50% 0%, rgba(184,147,74,.12) 0%, transparent 50%);
     pointer-events:none;
   }
+  .rsvp .section-top .line{background:rgba(212,184,118,.35)}
+  .rsvp .section-top .num{color:var(--gold-light)}
+  .rsvp .section-top .label{color:var(--gold-light)}
+  .rsvp .section-head h2{color:var(--cream)}
+  .rsvp .section-head h2 em{color:var(--gold-light)}
+
   .rsvp-lead{
     text-align:center;
     font-family:'Cormorant Garamond',serif;
     font-style:italic;
     font-size:1.05rem;
-    color:var(--cream-muted);
+    color:rgba(242,235,216,.75);
     max-width:540px;margin:0 auto 60px;
     line-height:1.7;
     position:relative;z-index:2;
@@ -634,16 +646,16 @@
     position:relative;z-index:2;
   }
   .form-frame{
-    border:1px solid var(--line);
+    border:1px solid rgba(212,184,118,.35);
     padding:56px 48px;
     position:relative;
-    background:var(--navy-panel);
+    background:var(--navy-deep);
   }
   .form-frame::before,
   .form-frame::after{
     content:'';position:absolute;
     width:14px;height:14px;
-    background:var(--navy);border:1px solid var(--gold);
+    background:var(--navy);border:1px solid var(--gold-light);
     transform:rotate(45deg);
   }
   .form-frame::before{top:-8px;left:calc(50% - 7px)}
@@ -653,9 +665,9 @@
   .field label{
     display:block;
     font-family:'Outfit',sans-serif;
-    font-size:.6rem;font-weight:400;
+    font-size:.6rem;font-weight:500;
     letter-spacing:.32em;text-transform:uppercase;
-    color:var(--gold);
+    color:var(--gold-light);
     margin-bottom:12px;
   }
   input[type=text],input[type=email],input[type=tel],input[type=number],textarea{
@@ -663,7 +675,7 @@
     padding:14px 0;
     background:transparent;
     border:none;
-    border-bottom:1px solid var(--line);
+    border-bottom:1px solid rgba(212,184,118,.3);
     color:var(--cream);
     font-family:'Cormorant Garamond',serif;
     font-size:1.05rem;
@@ -673,10 +685,10 @@
   }
   input:focus,textarea:focus{
     outline:none;
-    border-bottom-color:var(--gold);
+    border-bottom-color:var(--gold-light);
   }
   input::placeholder,textarea::placeholder{
-    color:#4A4A78;
+    color:rgba(242,235,216,.35);
     font-style:italic;
     font-family:'Cormorant Garamond',serif;
   }
@@ -688,20 +700,20 @@
   .check{
     display:flex;align-items:center;gap:18px;
     padding:18px 22px;
-    border:1px solid var(--line-soft);
+    border:1px solid rgba(212,184,118,.2);
     cursor:pointer;
     transition:all .3s ease;
     position:relative;
-    background:rgba(255,255,255,.012);
+    background:rgba(255,255,255,.02);
   }
   .check:hover{
-    border-color:var(--line);
-    background:rgba(201,162,39,.06);
+    border-color:rgba(212,184,118,.5);
+    background:rgba(212,184,118,.06);
   }
   .check input{
     appearance:none;-webkit-appearance:none;
     width:20px;height:20px;flex-shrink:0;
-    border:1px solid var(--gold);
+    border:1px solid var(--gold-light);
     transform:rotate(45deg);
     cursor:pointer;
     position:relative;
@@ -709,7 +721,7 @@
     background:transparent;
   }
   .check input:checked{
-    background:var(--gold);
+    background:var(--gold-light);
   }
   .check input:checked::after{
     content:'';
@@ -730,19 +742,19 @@
     font-family:'Outfit',sans-serif;
     font-size:.6rem;font-weight:400;
     letter-spacing:.24em;text-transform:uppercase;
-    color:var(--cream-muted);
+    color:rgba(242,235,216,.55);
     margin-top:5px;
   }
 
   .submit-row{text-align:center;margin-top:44px}
   .btn-submit{
     display:inline-flex;align-items:center;gap:16px;
-    background:transparent;
-    color:var(--gold);
+    background:var(--gold);
+    color:var(--navy);
     border:1px solid var(--gold);
     padding:20px 48px;
     font-family:'Outfit',sans-serif;
-    font-size:.68rem;font-weight:500;
+    font-size:.68rem;font-weight:600;
     letter-spacing:.4em;text-transform:uppercase;
     cursor:pointer;
     position:relative;
@@ -760,8 +772,8 @@
   .btn-submit::before{left:-3px}
   .btn-submit::after{right:-3px}
   .btn-submit:hover{
-    background:var(--gold);
-    color:var(--navy);
+    background:var(--gold-light);
+    border-color:var(--gold-light);
     letter-spacing:.44em;
   }
   .btn-submit:disabled{opacity:.5;cursor:wait}
@@ -771,16 +783,16 @@
     display:none;
     text-align:center;
     padding:70px 40px;
-    border:1px solid var(--line);
+    border:1px solid rgba(212,184,118,.35);
     max-width:600px;margin:0 auto;
-    background:var(--navy-panel);
+    background:var(--navy-deep);
     position:relative;
   }
   #rsvp-success::before,
   #rsvp-success::after{
     content:'';position:absolute;
     width:14px;height:14px;
-    background:var(--navy);border:1px solid var(--gold);
+    background:var(--navy);border:1px solid var(--gold-light);
     transform:rotate(45deg);
   }
   #rsvp-success::before{top:-8px;left:calc(50% - 7px)}
@@ -788,7 +800,7 @@
   #rsvp-success .success-arc{
     width:80px;height:40px;
     margin:0 auto 30px;
-    border:1px solid var(--gold);
+    border:1px solid var(--gold-light);
     border-bottom:none;
     border-radius:80px 80px 0 0;
     position:relative;
@@ -797,7 +809,7 @@
     content:'';position:absolute;
     bottom:-1px;left:50%;transform:translateX(-50%);
     width:1px;height:50px;
-    background:var(--gold);
+    background:var(--gold-light);
     opacity:.4;
   }
   #rsvp-success h3{
@@ -812,17 +824,16 @@
     font-style:italic;
     font-size:1.05rem;
     line-height:1.65;
-    color:var(--cream-muted);
+    color:rgba(242,235,216,.75);
   }
 
   /* ============================================================
-     FOOTER
+     FOOTER — bleu foncé
      ============================================================ */
   footer{
     padding:90px 32px 70px;
     background:var(--navy-deep);
     text-align:center;
-    border-top:1px solid var(--line-soft);
     position:relative;
   }
   footer::before{
@@ -834,13 +845,13 @@
   footer .foot-mono{
     font-family:'Italiana',serif;
     font-size:3.4rem;
-    color:var(--gold);
+    color:var(--gold-light);
     line-height:1;
     margin-bottom:20px;
     letter-spacing:.04em;
   }
   footer .foot-mono em{
-    font-style:normal;color:var(--gold-light);
+    font-style:normal;color:var(--gold);
     font-size:.85em;margin:0 .1em;
   }
   footer .foot-flute{
@@ -849,13 +860,13 @@
     margin:0 auto 24px;
   }
   footer .foot-flute span{
-    width:1px;height:100%;background:var(--gold);opacity:.4;
+    width:1px;height:100%;background:var(--gold-light);opacity:.4;
   }
   footer p{
     font-family:'Outfit',sans-serif;
     font-size:.62rem;font-weight:400;
     letter-spacing:.42em;text-transform:uppercase;
-    color:var(--cream-muted);
+    color:rgba(242,235,216,.6);
   }
 
   /* ============================================================
@@ -864,29 +875,30 @@
   #music-btn{
     position:fixed;bottom:26px;right:26px;z-index:50;
     width:52px;height:52px;
-    background:var(--navy-deep);
-    border:1px solid var(--gold);
+    background:var(--paper);
+    border:1px solid var(--navy);
     display:flex;align-items:center;justify-content:center;
     cursor:pointer;
     transition:all .35s ease;
     border-radius:0;
+    box-shadow:0 10px 30px rgba(3,4,94,.15);
   }
   #music-btn::before{
     content:'';position:absolute;inset:-5px;
     border:1px solid var(--line-soft);
     pointer-events:none;
   }
-  #music-btn:hover{background:var(--gold)}
-  #music-btn:hover svg{stroke:var(--navy)}
-  #music-btn svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.5;transition:stroke .3s ease}
+  #music-btn:hover{background:var(--navy)}
+  #music-btn:hover svg{stroke:var(--gold-light)}
+  #music-btn svg{width:18px;height:18px;stroke:var(--navy);fill:none;stroke-width:1.5;transition:stroke .3s ease}
 
   /* ============================================================
-     OVERLAY
+     OVERLAY — ivoire clair
      ============================================================ */
   #audio-gate{
     display:flex;
     position:fixed;inset:0;z-index:100;
-    background:var(--navy);
+    background:var(--ivory);
     align-items:center;justify-content:center;
     text-align:center;
     padding:32px;
@@ -909,7 +921,7 @@
     position:absolute;
     top:50%;left:50%;transform:translate(-50%,-50%);
     width:1000px;height:1000px;
-    opacity:.12;
+    opacity:.10;
     pointer-events:none;
   }
   #audio-gate.hide{opacity:0;pointer-events:none}
@@ -925,7 +937,7 @@
   }
   #audio-gate .gate-kicker{
     font-family:'Outfit',sans-serif;
-    font-size:.62rem;font-weight:400;
+    font-size:.62rem;font-weight:500;
     letter-spacing:.5em;text-transform:uppercase;
     color:var(--gold);
     margin-bottom:34px;
@@ -933,19 +945,19 @@
   }
   #audio-gate .gate-kicker::before,
   #audio-gate .gate-kicker::after{
-    content:'';width:36px;height:1px;background:var(--gold);opacity:.5;
+    content:'';width:36px;height:1px;background:var(--gold);opacity:.6;
   }
   #audio-gate .gate-mono{
     font-family:'Italiana',serif;
     font-size:clamp(4.5rem,20vw,8rem);
     line-height:.9;
-    color:var(--gold);
+    color:var(--navy);
     letter-spacing:.04em;
     margin-bottom:0;
   }
   #audio-gate .gate-mono em{
-    font-style:normal;color:var(--gold-light);
-    font-size:.85em;margin:0 .1em;opacity:.85;
+    font-style:normal;color:var(--gold);
+    font-size:.85em;margin:0 .1em;
   }
   #audio-gate .gate-arc{
     width:90px;height:45px;
@@ -967,7 +979,7 @@
     font-style:italic;
     font-weight:400;
     font-size:clamp(1.3rem,4.5vw,1.8rem);
-    color:var(--cream);
+    color:var(--navy);
     margin:0 0 16px;
     line-height:1.4;
   }
@@ -975,7 +987,7 @@
     font-family:'Cormorant Garamond',serif;
     font-style:italic;
     font-size:.98rem;
-    color:var(--cream-muted);
+    color:var(--muted);
     line-height:1.7;
     max-width:400px;margin:0 auto;
   }
@@ -983,11 +995,11 @@
     display:inline-flex;align-items:center;gap:14px;
     margin-top:44px;
     padding:18px 46px;
-    background:transparent;
-    border:1px solid var(--gold);
-    color:var(--gold);
+    background:var(--navy);
+    border:1px solid var(--navy);
+    color:var(--gold-light);
     font-family:'Outfit',sans-serif;
-    font-size:.68rem;font-weight:500;
+    font-size:.68rem;font-weight:600;
     letter-spacing:.4em;text-transform:uppercase;
     cursor:pointer;
     transition:all .45s ease;
@@ -997,7 +1009,7 @@
   #audio-gate .gate-btn::after{
     content:'';position:absolute;
     width:6px;height:6px;
-    background:var(--navy);
+    background:var(--ivory);
     border:1px solid var(--gold);
     transform:rotate(45deg);
     top:50%;margin-top:-3px;
@@ -1007,6 +1019,7 @@
   #audio-gate:hover .gate-btn,
   #audio-gate:active .gate-btn{
     background:var(--gold);
+    border-color:var(--gold);
     color:var(--navy);
     letter-spacing:.44em;
   }
@@ -1014,13 +1027,13 @@
   #audio-gate .gate-hint{
     margin-top:44px;
     font-family:'Outfit',sans-serif;
-    font-size:.6rem;font-weight:400;
+    font-size:.6rem;font-weight:500;
     letter-spacing:.44em;text-transform:uppercase;
     color:var(--gold);
-    opacity:.5;
+    opacity:.6;
     animation:pulse 2.8s ease-in-out infinite;
   }
-  @keyframes pulse{0%,100%{opacity:.35}50%{opacity:.8}}
+  @keyframes pulse{0%,100%{opacity:.4}50%{opacity:.9}}
 
   /* ============================================================
      REVEAL
@@ -1035,14 +1048,14 @@
     .panels{grid-template-columns:1fr}
     .panel:not(:last-child){
       border-right:none;
-      border-bottom:1px solid var(--line);
+      border-bottom:1px solid var(--line-soft);
     }
     .panel h3{min-height:0}
     .panel p{min-height:0}
     .venue-row{
       grid-template-columns:100px 1fr auto;
       gap:22px;
-      padding:30px 4px;
+      padding:30px 24px;
     }
     .venue-left{padding-right:20px}
   }
@@ -1078,7 +1091,7 @@
     .panel-day{font-size:3.8rem}
     .venue-row{
       grid-template-columns:1fr auto;
-      padding:26px 4px;
+      padding:26px 20px;
       gap:18px;
     }
     .venue-left{
@@ -1110,10 +1123,10 @@
 </head>
 <body>
 
-<!-- ══════════ OVERLAY ART DÉCO ══════════ -->
+<!-- ══════════ OVERLAY D'ACCUEIL ══════════ -->
 <div id="audio-gate" role="button" tabindex="0" aria-label="Démarrer l'expérience">
   <svg class="gate-sunburst" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="#C9A227" stroke-width="0.4" fill="none">
+    <g stroke="#B8934A" stroke-width="0.4" fill="none">
       <line x1="200" y1="200" x2="200" y2="0"/>
       <line x1="200" y1="200" x2="341" y2="59"/>
       <line x1="200" y1="200" x2="400" y2="200"/>
@@ -1154,7 +1167,7 @@
 <!-- ══════════ HERO ══════════ -->
 <header class="hero">
   <svg class="sunburst" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-    <g stroke="#C9A227" stroke-width="0.3" fill="none">
+    <g stroke="#B8934A" stroke-width="0.3" fill="none">
       <line x1="200" y1="200" x2="200" y2="0"/>
       <line x1="200" y1="200" x2="341" y2="59"/>
       <line x1="200" y1="200" x2="400" y2="200"/>
