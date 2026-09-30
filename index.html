@@ -8,1409 +8,508 @@
 <meta name="theme-color" content="#03045E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#03045E;
     --navy-deep:#020347;
-    --navy-soft:#0A0B7A;
-    --navy-panel:#050670;
-    --gold:#C9A227;
-    --gold-light:#E8CF7A;
-    --gold-deep:#8B6F14;
-    --cream:#F2EBD8;
-    --cream-muted:#9A96B8;
-    --line:rgba(201,162,39,.32);
-    --line-soft:rgba(201,162,39,.15);
-    --line-navy:rgba(242,235,216,.08);
+    --navy-soft:#1A1B7A;
+    --gold:#C9A961;
+    --gold-light:#E2CC94;
+    --ivory:#FBFAF7;
+    --text:#2A2A33;
+    --muted:#7A7A85;
+    --line:#E8E4DA;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    background:var(--navy);
-    color:var(--cream);
-    font-family:'Cormorant Garamond',serif;
-    font-weight:400;
+    background:var(--ivory);
+    color:var(--text);
+    font-family:'Jost',sans-serif;
+    font-weight:300;
     line-height:1.7;
     -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
   }
-  .display{font-family:'Italiana',serif;font-weight:400;letter-spacing:.02em}
-  .sans{font-family:'Outfit',sans-serif}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 32px}
-  .wrap-narrow{max-width:720px;margin:0 auto;padding:0 32px}
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;font-weight:400}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
 
-  /* Texture de fond fine */
-  body::before{
-    content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-    background:
-      repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(201,162,39,.012) 2px, rgba(201,162,39,.012) 3px);
-  }
-  body > *{position:relative;z-index:1}
-
-  /* ============================================================
-     DÉCORATIONS ART DÉCO
-     ============================================================ */
-  .deco-chevron{
-    display:block;
-    width:100%;height:14px;
-    background-image:
-      linear-gradient(135deg, var(--gold) 25%, transparent 25%),
-      linear-gradient(225deg, var(--gold) 25%, transparent 25%);
-    background-size:14px 14px;
-    background-position:0 0;
-    opacity:.35;
-  }
-  .deco-diamond{
-    display:inline-block;
-    width:8px;height:8px;
-    background:var(--gold);
-    transform:rotate(45deg);
-    vertical-align:middle;
-    margin:0 14px;
-  }
-
-  /* ============================================================
-     HERO
-     ============================================================ */
+  /* ---------- HERO ---------- */
   .hero{
     min-height:100svh;
-    padding:36px 32px 40px;
-    position:relative;
-    overflow:hidden;
     display:flex;flex-direction:column;
-    background:
-      radial-gradient(ellipse at 50% 0%, rgba(201,162,39,.10) 0%, transparent 55%),
-      var(--navy);
-  }
-  .hero .sunburst{
-    position:absolute;
-    top:-80px;left:50%;transform:translateX(-50%);
-    width:900px;height:900px;
-    max-width:none;
-    opacity:.15;
-  }
-  .hero::after{
-    content:'';position:absolute;inset:16px;
-    border:1px solid var(--line-soft);
-    pointer-events:none;
-  }
-  .hero::before{
-    content:'';position:absolute;inset:22px;
-    border:1px solid var(--line-soft);
-    pointer-events:none;
-  }
-
-  .hero-nav{
-    display:flex;justify-content:space-between;align-items:center;
-    max-width:1080px;width:100%;margin:0 auto;
-    font-family:'Outfit',sans-serif;
-    font-size:.68rem;font-weight:400;
-    letter-spacing:.34em;text-transform:uppercase;
-    color:var(--gold);
-    padding:0 8px;
-  }
-  .hero-nav .brand{
-    font-family:'Italiana',serif;
-    font-size:1.5rem;
-    letter-spacing:.08em;
-    color:var(--gold-light);
-  }
-  .hero-nav .brand em{
-    font-style:normal;color:var(--gold);
-    margin:0 .2em;
-  }
-  .hero-nav .nav-mid{
-    color:var(--cream-muted);
-  }
-
-  .hero-body{
-    flex:1;display:flex;flex-direction:column;
     align-items:center;justify-content:center;
     text-align:center;
-    padding:40px 0 20px;
-    position:relative;z-index:2;
-  }
-
-  .hero-kicker{
-    font-family:'Outfit',sans-serif;
-    font-size:.68rem;font-weight:400;
-    letter-spacing:.5em;text-transform:uppercase;
-    color:var(--gold);
-    margin-bottom:34px;
-    display:flex;align-items:center;gap:18px;
-  }
-  .hero-kicker::before,.hero-kicker::after{
-    content:'';width:40px;height:1px;background:var(--gold);opacity:.5;
-  }
-
-  .hero-names{
-    font-family:'Italiana',serif;
-    font-size:clamp(2.4rem,7.5vw,4.6rem);
-    line-height:1.05;
-    letter-spacing:.02em;
-    color:var(--cream);
-    margin-bottom:0;
-  }
-  .hero-names .family{
-    display:block;
-    font-size:.42em;
-    letter-spacing:.4em;
-    text-transform:uppercase;
-    color:var(--gold);
-    font-family:'Outfit',sans-serif;
-    font-weight:300;
-    margin-bottom:10px;
-  }
-  .hero-names .first{
-    display:block;
-    color:var(--cream);
-    margin-bottom:4px;
-  }
-
-  .hero-amp{
-    display:flex;align-items:center;justify-content:center;
-    gap:22px;
-    margin:26px auto;
-    max-width:340px;
-    color:var(--gold);
-  }
-  .hero-amp::before,.hero-amp::after{
-    content:'';flex:1;height:1px;background:var(--gold);opacity:.4;
-  }
-  .hero-amp span{
-    font-family:'Italiana',serif;
-    font-size:1.6rem;
-    color:var(--gold-light);
-  }
-
-  .hero-mono{
-    font-family:'Italiana',serif;
-    font-size:clamp(3.6rem,15vw,6.4rem);
-    line-height:.9;
-    color:var(--gold);
-    margin:16px 0 20px;
-    letter-spacing:.04em;
-  }
-  .hero-mono em{
-    font-style:normal;
-    color:var(--gold-light);
-    font-size:.85em;
-    margin:0 .1em;
-    opacity:.85;
-  }
-
-  .hero-date{
-    font-family:'Outfit',sans-serif;
-    font-size:.72rem;font-weight:400;
-    letter-spacing:.44em;text-transform:uppercase;
-    color:var(--cream-muted);
-    margin-top:8px;
-  }
-  .hero-date strong{
-    color:var(--cream);font-weight:400;
-  }
-
-  .hero-location{
-    font-family:'Cormorant Garamond',serif;
-    font-style:italic;
-    font-size:1.05rem;
-    color:var(--gold-light);
-    margin-top:6px;
-  }
-
-  .hero-countdown{
-    display:flex;gap:0;
-    justify-content:center;
-    margin:44px auto 0;
-    max-width:520px;
-    width:100%;
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    position:relative;z-index:2;
-  }
-  .hero-countdown::before,
-  .hero-countdown::after{
-    content:'';position:absolute;
-    width:10px;height:10px;
-    background:var(--gold);
-    transform:rotate(45deg);
-    top:50%;margin-top:-5px;
-  }
-  .hero-countdown::before{left:-5px}
-  .hero-countdown::after{right:-5px}
-
-  .cd-item{
-    flex:1;
-    padding:22px 4px;
+    padding:80px 24px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(201,169,97,.08) 0%, transparent 55%),
+      var(--ivory);
     position:relative;
   }
-  .cd-item:not(:last-child)::after{
-    content:'';position:absolute;right:0;top:22%;bottom:22%;
-    width:1px;background:var(--line-soft);
+  .hero::before,.hero::after{
+    content:'';position:absolute;left:50%;transform:translateX(-50%);
+    width:1px;background:var(--line);
   }
-  .cd-num{
-    font-family:'Italiana',serif;
-    font-size:clamp(1.9rem,5.5vw,2.6rem);
+  .hero::before{top:40px;height:60px}
+  .hero::after{bottom:40px;height:60px}
+
+  .monogram{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(3.4rem,14vw,6.2rem);
+    letter-spacing:.05em;
+    color:var(--navy);
     line-height:1;
-    color:var(--gold-light);
-    font-variant-numeric:tabular-nums;
+  }
+  .monogram span{
+    font-style:italic;font-size:.7em;
+    color:var(--gold);margin:0 .04em;
+  }
+  .divider{
+    width:80px;height:1px;background:var(--gold-light);
+    margin:30px auto;position:relative;
+  }
+  .divider::after{
+    content:'✦';position:absolute;top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    background:var(--ivory);padding:0 12px;
+    color:var(--gold);font-size:.7rem;
+  }
+  .hero h1{
+    font-size:clamp(1.6rem,5.6vw,2.5rem);
+    letter-spacing:.02em;
+    color:var(--navy);
+    line-height:1.25;
+    max-width:640px;
+  }
+  .hero h1 .amp{
+    display:block;font-style:italic;
+    color:var(--gold);font-size:.7em;margin:4px 0;
+  }
+  .hero .date{
+    font-size:.82rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--muted);margin-top:24px;
+  }
+  .hero .place{
+    font-size:1rem;color:var(--muted);margin-top:8px;font-style:italic;
+    font-family:'Cormorant Garamond',serif;
+  }
+
+  /* ---------- COUNTDOWN ---------- */
+  .countdown{display:flex;gap:26px;margin-top:48px;flex-wrap:wrap;justify-content:center}
+  .cd-item{min-width:62px}
+  .cd-num{
+    font-family:'Cormorant Garamond',serif;
+    font-size:2.2rem;color:var(--navy);line-height:1;font-weight:600;
   }
   .cd-lbl{
-    font-family:'Outfit',sans-serif;
-    font-size:.56rem;font-weight:400;
-    letter-spacing:.32em;text-transform:uppercase;
-    color:var(--cream-muted);
-    margin-top:10px;
+    font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--muted);margin-top:8px;
   }
 
-  .hero-footer{
-    max-width:1080px;width:100%;margin:0 auto;
-    display:flex;justify-content:center;gap:40px;
-    font-family:'Outfit',sans-serif;
-    font-size:.62rem;font-weight:400;
-    letter-spacing:.34em;text-transform:uppercase;
-    color:var(--cream-muted);
-    padding:0 8px;
-  }
-  .hero-footer span{display:flex;align-items:center;gap:14px}
-  .hero-footer span::before,
-  .hero-footer span::after{
-    content:'';width:6px;height:6px;
-    background:var(--gold);transform:rotate(45deg);
-  }
-
-  /* ============================================================
-     SECTIONS
-     ============================================================ */
-  section{padding:120px 0;position:relative;overflow:hidden}
-
-  .section-top{
-    display:flex;justify-content:center;align-items:center;
-    margin-bottom:60px;
-    color:var(--gold);
-  }
-  .section-top .line{
-    flex:1;height:1px;background:var(--line);max-width:160px;
-  }
-  .section-top .num{
-    font-family:'Italiana',serif;
-    font-size:1.3rem;
-    padding:0 24px;
-    letter-spacing:.1em;
-  }
-  .section-top .label{
-    font-family:'Outfit',sans-serif;
-    font-size:.62rem;font-weight:400;
-    letter-spacing:.4em;text-transform:uppercase;
-    color:var(--cream-muted);
-    padding:0 24px;
-  }
-
-  .section-head{
+  /* ---------- SECTIONS ---------- */
+  section{padding:92px 0}
+  .section-title{
     text-align:center;
-    margin-bottom:70px;
-  }
-  .section-head h2{
-    font-family:'Italiana',serif;
-    font-size:clamp(2.2rem,6vw,3.6rem);
-    line-height:1.1;
-    color:var(--cream);
-    letter-spacing:.02em;
-  }
-  .section-head h2 em{
-    font-style:normal;
-    color:var(--gold);
-  }
-
-  /* ============================================================
-     HISTOIRE
-     ============================================================ */
-  .story{
-    background:var(--navy-deep);
-    border-top:1px solid var(--line-soft);
-    border-bottom:1px solid var(--line-soft);
-  }
-  .story::before{
-    content:'';position:absolute;inset:0;
-    background:
-      radial-gradient(ellipse at center, rgba(201,162,39,.06) 0%, transparent 60%);
-    pointer-events:none;
-  }
-  .story-grid{
-    max-width:760px;margin:0 auto;
-    position:relative;z-index:2;
-  }
-  .story-text{
-    font-family:'Cormorant Garamond',serif;
-    font-size:clamp(1.15rem,2.8vw,1.45rem);
-    line-height:1.75;
-    color:var(--cream);
-    text-align:justify;
-    font-weight:400;
-  }
-  .story-text .drop{
-    float:left;
-    font-family:'Italiana',serif;
-    font-size:5.4rem;
-    line-height:.82;
-    color:var(--gold);
-    padding:6px 16px 0 0;
-  }
-
-  .story-ornament{
-    display:flex;align-items:center;justify-content:center;
-    margin:56px auto;
-    max-width:400px;
-    color:var(--gold);
-  }
-  .story-ornament::before,
-  .story-ornament::after{
-    content:'';flex:1;height:1px;background:var(--gold);opacity:.3;
-  }
-  .story-ornament span{
-    padding:0 20px;
-    display:flex;align-items:center;gap:6px;
-  }
-  .story-ornament .d{
-    width:6px;height:6px;background:var(--gold);
-    transform:rotate(45deg);
-  }
-
-  .story-quote{
-    text-align:center;
-    font-family:'Cormorant Garamond',serif;
-    font-style:italic;
-    font-size:clamp(1.25rem,3vw,1.6rem);
-    line-height:1.55;
-    color:var(--gold-light);
-    font-weight:400;
-    position:relative;
-    padding:0 20px;
-  }
-
-  /* ============================================================
-     PROGRAMME — 3 panneaux Art Déco
-     ============================================================ */
-  .programme{background:var(--navy)}
-  .panels{
-    display:grid;grid-template-columns:repeat(3,1fr);
-    gap:0;
-    border:1px solid var(--line);
-    position:relative;
-    background:var(--navy-panel);
-  }
-  .panels::before,
-  .panels::after{
-    content:'';position:absolute;
-    width:14px;height:14px;
-    background:var(--navy);border:1px solid var(--gold);
-    transform:rotate(45deg);
-    top:-8px;
-  }
-  .panels::before{left:-8px}
-  .panels::after{right:-8px}
-
-  .panel{
-    padding:56px 32px 48px;
-    text-align:center;
-    position:relative;
-    transition:background .5s ease;
-  }
-  .panel:not(:last-child){
-    border-right:1px solid var(--line);
-  }
-  .panel:hover{background:rgba(201,162,39,.045)}
-
-  .panel-arc{
-    width:56px;height:28px;
-    margin:0 auto 26px;
-    position:relative;
-    border:1px solid var(--gold);
-    border-bottom:none;
-    border-radius:56px 56px 0 0;
-    opacity:.7;
-  }
-  .panel-arc::before{
-    content:'';position:absolute;
-    bottom:0;left:50%;transform:translateX(-50%);
-    width:1px;height:36px;
-    background:var(--gold);
-    opacity:.5;
-  }
-
-  .panel-day{
-    font-family:'Italiana',serif;
-    font-size:clamp(3.4rem,10vw,5.4rem);
-    line-height:.9;
-    color:var(--gold);
-    margin-bottom:6px;
-  }
-  .panel-weekday{
-    font-family:'Outfit',sans-serif;
-    font-size:.6rem;font-weight:400;
-    letter-spacing:.4em;text-transform:uppercase;
-    color:var(--cream-muted);
-    margin-bottom:24px;
-  }
-  .panel-divider{
-    display:flex;align-items:center;gap:8px;
-    justify-content:center;
-    margin:20px auto 24px;
-    max-width:100px;
-    color:var(--gold);
-  }
-  .panel-divider::before,
-  .panel-divider::after{
-    content:'';flex:1;height:1px;background:var(--gold);opacity:.4;
-  }
-  .panel-divider .d{
-    width:4px;height:4px;background:var(--gold);transform:rotate(45deg);
-  }
-  .panel h3{
-    font-family:'Cormorant Garamond',serif;
-    font-size:1.25rem;
-    line-height:1.35;
-    color:var(--cream);
-    font-weight:500;
+    font-size:clamp(1.7rem,5vw,2.2rem);
+    color:var(--navy);
     letter-spacing:.01em;
-    margin-bottom:14px;
-    min-height:3.4em;
+    line-height:1.2;
   }
-  .panel p{
-    font-family:'Cormorant Garamond',serif;
-    font-style:italic;
-    font-size:.92rem;
-    line-height:1.65;
-    color:var(--cream-muted);
-    margin-bottom:22px;
-    min-height:3em;
-  }
-  .panel-time{
-    font-family:'Italiana',serif;
-    font-size:1.4rem;
-    color:var(--gold-light);
-    letter-spacing:.06em;
-  }
-  .panel-time small{
-    display:block;
-    font-family:'Outfit',sans-serif;
-    font-style:normal;
-    font-size:.54rem;
-    font-weight:400;
-    letter-spacing:.34em;text-transform:uppercase;
-    color:var(--cream-muted);
-    margin-top:8px;
+  .section-sub{
+    text-align:center;font-size:.7rem;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--gold);
+    margin-bottom:14px;font-weight:500;
   }
 
-  /* ============================================================
-     LIEUX
-     ============================================================ */
-  .venues{
-    background:var(--navy-deep);
+  /* ---------- HISTOIRE ---------- */
+  .story{
+    background:var(--ivory);
+    text-align:center;
+  }
+  .story .quote{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(1.4rem,4.2vw,1.8rem);
+    font-style:italic;
+    color:var(--navy);
+    line-height:1.5;
+    max-width:560px;margin:0 auto;
     position:relative;
-    border-top:1px solid var(--line-soft);
-    border-bottom:1px solid var(--line-soft);
+    padding:0 20px;
   }
-  .venues::before{
-    content:'';position:absolute;inset:0;
-    background-image:
-      linear-gradient(45deg, transparent 49%, rgba(201,162,39,.035) 49%, rgba(201,162,39,.035) 51%, transparent 51%),
-      linear-gradient(-45deg, transparent 49%, rgba(201,162,39,.035) 49%, rgba(201,162,39,.035) 51%, transparent 51%);
-    background-size:60px 60px;
-    pointer-events:none;
-    opacity:.6;
+  .story .quote::before,.story .quote::after{
+    content:'"';
+    font-family:'Cormorant Garamond',serif;
+    font-size:4rem;
+    color:var(--gold-light);
+    line-height:0;
+    position:absolute;
   }
-  .venue-list{
-    display:flex;flex-direction:column;
-    gap:0;
+  .story .quote::before{top:20px;left:-10px}
+  .story .quote::after{content:'"';bottom:-14px;right:-10px}
+  .story p{
+    color:var(--muted);font-size:.95rem;
+    max-width:520px;margin:34px auto 0;
+  }
+
+  /* ---------- PROGRAMME ---------- */
+  .programme{
+    background:#fff;
     border-top:1px solid var(--line);
     border-bottom:1px solid var(--line);
-    position:relative;z-index:2;
   }
-  .venue-row{
-    display:grid;
-    grid-template-columns:140px 1fr auto;
-    align-items:center;
-    gap:36px;
-    padding:38px 8px;
-    border-bottom:1px solid var(--line-soft);
-    text-decoration:none;color:inherit;
-    transition:padding .4s ease,background .4s ease;
-    position:relative;
+  .timeline{margin-top:54px;position:relative}
+  .timeline::before{
+    content:'';position:absolute;left:27px;top:12px;bottom:12px;
+    width:1px;background:var(--line);
   }
-  .venue-row:last-child{border-bottom:none}
-  .venue-row:hover{
-    padding-left:24px;padding-right:24px;
-    background:rgba(201,162,39,.05);
-  }
-  .venue-row:hover .venue-arrow{
-    transform:translateX(6px);
-    background:var(--gold);
-    color:var(--navy);
-  }
-
-  .venue-left{
-    display:flex;flex-direction:column;align-items:center;
-    padding-right:32px;
-    border-right:1px solid var(--line);
-    text-align:center;
-  }
-  .venue-left .d{
-    font-family:'Italiana',serif;
-    font-size:2.4rem;
-    line-height:1;
-    color:var(--gold);
-  }
-  .venue-left .m{
-    font-family:'Outfit',sans-serif;
-    font-size:.56rem;font-weight:400;
-    letter-spacing:.34em;text-transform:uppercase;
-    color:var(--cream-muted);
-    margin-top:8px;
-  }
-  .venue-left .t{
-    font-family:'Cormorant Garamond',serif;
-    font-style:italic;
-    font-size:.88rem;
-    color:var(--gold-light);
-    margin-top:4px;
-  }
-
-  .venue-info h3{
-    font-family:'Cormorant Garamond',serif;
-    font-size:1.35rem;
-    line-height:1.3;
-    font-weight:500;
-    color:var(--cream);
-    margin-bottom:6px;
-    letter-spacing:.005em;
-  }
-  .venue-info p{
-    font-family:'Cormorant Garamond',serif;
-    font-style:italic;
-    font-size:.9rem;
-    color:var(--cream-muted);
-  }
-
-  .venue-arrow{
-    width:52px;height:52px;
-    border:1px solid var(--gold);
-    border-radius:50%;
+  .event{display:flex;gap:26px;padding:0 0 46px;position:relative}
+  .event:last-child{padding-bottom:0}
+  .event-dot{
+    flex:0 0 55px;height:55px;border-radius:50%;
+    background:#fff;border:1px solid var(--gold);
     display:flex;align-items:center;justify-content:center;
-    color:var(--gold);
-    transition:all .35s ease;
-    flex-shrink:0;
-  }
-  .venue-arrow svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6}
-
-  /* ============================================================
-     RSVP
-     ============================================================ */
-  .rsvp{
-    background:var(--navy);
-    position:relative;
-  }
-  .rsvp::before{
-    content:'';position:absolute;inset:0;
-    background:
-      radial-gradient(circle at 50% 0%, rgba(201,162,39,.10) 0%, transparent 50%);
-    pointer-events:none;
-  }
-  .rsvp-lead{
-    text-align:center;
     font-family:'Cormorant Garamond',serif;
-    font-style:italic;
-    font-size:1.05rem;
-    color:var(--cream-muted);
-    max-width:540px;margin:0 auto 60px;
-    line-height:1.7;
-    position:relative;z-index:2;
+    font-size:1.1rem;color:var(--navy);font-weight:600;
+    position:relative;z-index:1;
   }
-  .rsvp-lead strong{color:var(--gold-light);font-weight:500;font-style:normal}
+  .event-body{padding-top:4px;flex:1}
+  .event-day{
+    font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:6px;font-weight:500;
+  }
+  .event-body h3{font-size:1.5rem;color:var(--navy);margin-bottom:8px;line-height:1.25}
+  .event-body p{color:var(--muted);font-size:.95rem}
+  .event-meta{
+    margin-top:12px;display:inline-flex;align-items:center;gap:8px;
+    font-size:.85rem;color:var(--text);
+  }
+  .event-meta svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:1.6}
 
-  form{
-    max-width:640px;margin:0 auto;
-    position:relative;z-index:2;
+  /* ---------- LIEUX ---------- */
+  .venue{
+    background:#fff;border:1px solid var(--line);border-radius:4px;
+    padding:30px;margin-bottom:18px;
   }
-  .form-frame{
-    border:1px solid var(--line);
-    padding:56px 48px;
-    position:relative;
-    background:var(--navy-panel);
+  .venue h3{font-size:1.35rem;color:var(--navy);margin-bottom:6px}
+  .venue p{color:var(--muted);font-size:.92rem;margin-bottom:18px}
+  .venue .venue-day{
+    display:inline-block;font-size:.62rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--gold);
+    margin-bottom:10px;font-weight:500;
   }
-  .form-frame::before,
-  .form-frame::after{
-    content:'';position:absolute;
-    width:14px;height:14px;
-    background:var(--navy);border:1px solid var(--gold);
-    transform:rotate(45deg);
+  .btn{
+    display:inline-block;padding:12px 26px;
+    border:1px solid var(--gold);color:var(--gold);
+    text-decoration:none;font-size:.7rem;
+    letter-spacing:.22em;text-transform:uppercase;
+    transition:all .3s ease;border-radius:2px;
+    background:transparent;cursor:pointer;font-family:'Jost',sans-serif;
+    font-weight:500;
   }
-  .form-frame::before{top:-8px;left:calc(50% - 7px)}
-  .form-frame::after{bottom:-8px;left:calc(50% - 7px)}
+  .btn:hover{background:var(--gold);color:#fff}
+  .btn-solid{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .btn-solid:hover{background:var(--navy-deep);border-color:var(--navy-deep);color:#fff}
 
-  .field{margin-bottom:28px}
-  .field label{
-    display:block;
-    font-family:'Outfit',sans-serif;
-    font-size:.6rem;font-weight:400;
-    letter-spacing:.32em;text-transform:uppercase;
-    color:var(--gold);
-    margin-bottom:12px;
+  /* ---------- RSVP ---------- */
+  .rsvp{background:var(--navy);color:#EDEBF5}
+  .rsvp .section-title{color:#fff}
+  .rsvp .section-sub{color:var(--gold-light)}
+  .rsvp .lead{
+    text-align:center;color:#B8B6D0;max-width:540px;
+    margin:0 auto 46px;font-size:.95rem;
   }
-  input[type=text],input[type=email],input[type=tel],input[type=number],textarea{
-    width:100%;
-    padding:14px 0;
-    background:transparent;
-    border:none;
-    border-bottom:1px solid var(--line);
-    color:var(--cream);
-    font-family:'Cormorant Garamond',serif;
-    font-size:1.05rem;
-    font-weight:400;
-    transition:border-color .3s ease;
-    border-radius:0;
+  .rsvp .lead strong{color:var(--gold-light);font-weight:500}
+  form{max-width:560px;margin:0 auto}
+  .field{margin-bottom:22px}
+  label{
+    display:block;font-size:.68rem;letter-spacing:.2em;
+    text-transform:uppercase;color:#A9A7C4;margin-bottom:9px;font-weight:500;
   }
-  input:focus,textarea:focus{
-    outline:none;
-    border-bottom-color:var(--gold);
+  input[type=text],input[type=email],input[type=tel],input[type=number],textarea,select{
+    width:100%;padding:13px 15px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:2px;color:#fff;
+    font-family:'Jost',sans-serif;font-size:.95rem;font-weight:300;
+    transition:border-color .25s ease;
   }
-  input::placeholder,textarea::placeholder{
-    color:#4A4A78;
-    font-style:italic;
-    font-family:'Cormorant Garamond',serif;
+  input:focus,textarea:focus,select:focus{
+    outline:none;border-color:var(--gold-light);
+    background:rgba(255,255,255,.09);
   }
-  textarea{resize:vertical;min-height:80px}
-
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:34px}
-
+  input::placeholder,textarea::placeholder{color:#6D6C8A}
+  textarea{resize:vertical;min-height:96px}
+  select option{background:var(--navy);color:#fff}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .checks{display:flex;flex-direction:column;gap:12px}
   .check{
-    display:flex;align-items:center;gap:18px;
-    padding:18px 22px;
-    border:1px solid var(--line-soft);
-    cursor:pointer;
-    transition:all .3s ease;
-    position:relative;
-    background:rgba(255,255,255,.012);
-  }
-  .check:hover{
-    border-color:var(--line);
-    background:rgba(201,162,39,.06);
-  }
-  .check input{
-    appearance:none;-webkit-appearance:none;
-    width:20px;height:20px;flex-shrink:0;
-    border:1px solid var(--gold);
-    transform:rotate(45deg);
-    cursor:pointer;
-    position:relative;
+    display:flex;align-items:center;gap:12px;
+    padding:14px 16px;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:2px;cursor:pointer;
     transition:all .25s ease;
-    background:transparent;
   }
-  .check input:checked{
-    background:var(--gold);
+  .check:hover{border-color:rgba(226,204,148,.5);background:rgba(255,255,255,.03)}
+  .check input{width:17px;height:17px;accent-color:var(--gold);cursor:pointer;flex-shrink:0}
+  .check span{font-size:.9rem;color:#DAD8E8}
+  .check small{display:block;color:#8886A4;font-size:.76rem;margin-top:2px}
+  .submit-row{text-align:center;margin-top:34px}
+  .submit-row .btn{
+    background:var(--gold);color:var(--navy);
+    border-color:var(--gold);padding:16px 46px;font-size:.72rem;
   }
-  .check input:checked::after{
-    content:'';
-    position:absolute;
-    inset:4px;
-    background:var(--navy);
-    border-radius:1px;
-  }
-  .check span{
-    font-family:'Cormorant Garamond',serif;
-    font-size:1.05rem;
-    color:var(--cream);
-    font-weight:400;
-    line-height:1.4;
-  }
-  .check small{
-    display:block;
-    font-family:'Outfit',sans-serif;
-    font-size:.6rem;font-weight:400;
-    letter-spacing:.24em;text-transform:uppercase;
-    color:var(--cream-muted);
-    margin-top:5px;
-  }
-
-  .submit-row{text-align:center;margin-top:44px}
-  .btn-submit{
-    display:inline-flex;align-items:center;gap:16px;
-    background:transparent;
-    color:var(--gold);
-    border:1px solid var(--gold);
-    padding:20px 48px;
-    font-family:'Outfit',sans-serif;
-    font-size:.68rem;font-weight:500;
-    letter-spacing:.4em;text-transform:uppercase;
-    cursor:pointer;
-    position:relative;
-    transition:all .45s ease;
-  }
-  .btn-submit::before,
-  .btn-submit::after{
-    content:'';position:absolute;
-    width:6px;height:6px;
-    background:var(--navy);
-    border:1px solid var(--gold);
-    transform:rotate(45deg);
-    top:50%;margin-top:-3px;
-  }
-  .btn-submit::before{left:-3px}
-  .btn-submit::after{right:-3px}
-  .btn-submit:hover{
-    background:var(--gold);
-    color:var(--navy);
-    letter-spacing:.44em;
-  }
-  .btn-submit:disabled{opacity:.5;cursor:wait}
-  .btn-submit svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
+  .submit-row .btn:hover{background:var(--gold-light);border-color:var(--gold-light)}
 
   #rsvp-success{
-    display:none;
-    text-align:center;
-    padding:70px 40px;
-    border:1px solid var(--line);
-    max-width:600px;margin:0 auto;
-    background:var(--navy-panel);
-    position:relative;
+    display:none;text-align:center;padding:50px 20px;
+    border:1px solid rgba(201,169,97,.4);border-radius:4px;
   }
-  #rsvp-success::before,
-  #rsvp-success::after{
-    content:'';position:absolute;
-    width:14px;height:14px;
-    background:var(--navy);border:1px solid var(--gold);
-    transform:rotate(45deg);
-  }
-  #rsvp-success::before{top:-8px;left:calc(50% - 7px)}
-  #rsvp-success::after{bottom:-8px;left:calc(50% - 7px)}
-  #rsvp-success .success-arc{
-    width:80px;height:40px;
-    margin:0 auto 30px;
-    border:1px solid var(--gold);
-    border-bottom:none;
-    border-radius:80px 80px 0 0;
-    position:relative;
-  }
-  #rsvp-success .success-arc::before{
-    content:'';position:absolute;
-    bottom:-1px;left:50%;transform:translateX(-50%);
-    width:1px;height:50px;
-    background:var(--gold);
-    opacity:.4;
-  }
-  #rsvp-success h3{
-    font-family:'Italiana',serif;
-    font-size:2.2rem;
-    color:var(--cream);
-    margin-bottom:14px;
-    letter-spacing:.03em;
-  }
-  #rsvp-success p{
-    font-family:'Cormorant Garamond',serif;
-    font-style:italic;
-    font-size:1.05rem;
-    line-height:1.65;
-    color:var(--cream-muted);
-  }
+  #rsvp-success .monogram{font-size:3rem;color:var(--gold-light)}
+  #rsvp-success h3{color:#fff;font-size:1.8rem;margin:16px 0 12px}
+  #rsvp-success p{color:#B8B6D0;font-size:.95rem}
 
-  /* ============================================================
-     FOOTER
-     ============================================================ */
+  /* ---------- FOOTER ---------- */
   footer{
-    padding:90px 32px 70px;
-    background:var(--navy-deep);
-    text-align:center;
-    border-top:1px solid var(--line-soft);
-    position:relative;
+    text-align:center;padding:64px 24px;
+    background:var(--navy-deep);color:#EDEBF5;
   }
-  footer::before{
-    content:'';position:absolute;
-    top:0;left:50%;transform:translateX(-50%);
-    width:60px;height:1px;
-    background:var(--gold);
-  }
-  footer .foot-mono{
-    font-family:'Italiana',serif;
-    font-size:3.4rem;
-    color:var(--gold);
-    line-height:1;
-    margin-bottom:20px;
-    letter-spacing:.04em;
-  }
-  footer .foot-mono em{
-    font-style:normal;color:var(--gold-light);
-    font-size:.85em;margin:0 .1em;
-  }
-  footer .foot-flute{
-    display:flex;gap:4px;justify-content:center;align-items:center;
-    height:12px;
-    margin:0 auto 24px;
-  }
-  footer .foot-flute span{
-    width:1px;height:100%;background:var(--gold);opacity:.4;
-  }
-  footer p{
-    font-family:'Outfit',sans-serif;
-    font-size:.62rem;font-weight:400;
-    letter-spacing:.42em;text-transform:uppercase;
-    color:var(--cream-muted);
-  }
+  footer .monogram{font-size:2.4rem;color:var(--gold)}
+  footer p{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#8886A4;margin-top:14px}
 
-  /* ============================================================
-     MUSIC
-     ============================================================ */
+  /* ---------- MUSIC ---------- */
   #music-btn{
-    position:fixed;bottom:26px;right:26px;z-index:50;
-    width:52px;height:52px;
-    background:var(--navy-deep);
-    border:1px solid var(--gold);
+    position:fixed;bottom:22px;right:22px;z-index:50;
+    width:46px;height:46px;border-radius:50%;
+    background:#fff;border:1px solid var(--line);
     display:flex;align-items:center;justify-content:center;
-    cursor:pointer;
-    transition:all .35s ease;
-    border-radius:0;
+    cursor:pointer;box-shadow:0 4px 20px rgba(3,4,94,.15);
+    transition:transform .25s ease;
   }
-  #music-btn::before{
-    content:'';position:absolute;inset:-5px;
-    border:1px solid var(--line-soft);
-    pointer-events:none;
-  }
-  #music-btn:hover{background:var(--gold)}
-  #music-btn:hover svg{stroke:var(--navy)}
-  #music-btn svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.5;transition:stroke .3s ease}
+  #music-btn:hover{transform:scale(1.06)}
+  #music-btn svg{width:18px;height:18px;stroke:var(--navy);fill:none;stroke-width:1.6}
 
-  /* ============================================================
-     OVERLAY
-     ============================================================ */
+  /* ---------- OVERLAY D'ACCUEIL (premier écran) ---------- */
   #audio-gate{
     display:flex;
     position:fixed;inset:0;z-index:100;
-    background:var(--navy);
+    background:rgba(3,4,94,.96);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
     align-items:center;justify-content:center;
     text-align:center;
+    color:#fff;
     padding:32px;
     cursor:pointer;
     opacity:1;
-    transition:opacity 1s ease;
-    overflow:hidden;
+    transition:opacity .7s ease;
   }
-  #audio-gate::before{
-    content:'';position:absolute;inset:20px;
-    border:1px solid var(--line);
+  #audio-gate.hide{
+    opacity:0;
     pointer-events:none;
   }
-  #audio-gate::after{
-    content:'';position:absolute;inset:28px;
-    border:1px solid var(--line-soft);
-    pointer-events:none;
-  }
-  #audio-gate .gate-sunburst{
-    position:absolute;
-    top:50%;left:50%;transform:translate(-50%,-50%);
-    width:1000px;height:1000px;
-    opacity:.12;
-    pointer-events:none;
-  }
-  #audio-gate.hide{opacity:0;pointer-events:none}
-
-  @keyframes gateIn{
-    from{opacity:0;letter-spacing:.3em}
-    to{opacity:1;letter-spacing:.06em}
-  }
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
   #audio-gate .gate-inner{
-    max-width:560px;
-    position:relative;z-index:2;
-    animation:gateIn 1.4s ease both;
+    max-width:440px;
+    animation:fadeIn .9s ease both;
   }
-  #audio-gate .gate-kicker{
-    font-family:'Outfit',sans-serif;
-    font-size:.62rem;font-weight:400;
-    letter-spacing:.5em;text-transform:uppercase;
+  #audio-gate .monogram{
     color:var(--gold);
-    margin-bottom:34px;
-    display:flex;align-items:center;justify-content:center;gap:16px;
-  }
-  #audio-gate .gate-kicker::before,
-  #audio-gate .gate-kicker::after{
-    content:'';width:36px;height:1px;background:var(--gold);opacity:.5;
-  }
-  #audio-gate .gate-mono{
-    font-family:'Italiana',serif;
-    font-size:clamp(4.5rem,20vw,8rem);
-    line-height:.9;
-    color:var(--gold);
-    letter-spacing:.04em;
-    margin-bottom:0;
-  }
-  #audio-gate .gate-mono em{
-    font-style:normal;color:var(--gold-light);
-    font-size:.85em;margin:0 .1em;opacity:.85;
-  }
-  #audio-gate .gate-arc{
-    width:90px;height:45px;
-    margin:38px auto;
-    border:1px solid var(--gold);
-    border-bottom:none;
-    border-radius:90px 90px 0 0;
-    position:relative;
-  }
-  #audio-gate .gate-arc::before{
-    content:'';position:absolute;
-    bottom:-1px;left:50%;transform:translateX(-50%);
-    width:1px;height:70px;
-    background:var(--gold);
-    opacity:.5;
-  }
-  #audio-gate h2{
+    font-size:clamp(3rem,12vw,5rem);
     font-family:'Cormorant Garamond',serif;
-    font-style:italic;
-    font-weight:400;
-    font-size:clamp(1.3rem,4.5vw,1.8rem);
-    color:var(--cream);
-    margin:0 0 16px;
-    line-height:1.4;
+    line-height:1;
+  }
+  #audio-gate .monogram span{font-style:italic;font-size:.7em}
+  #audio-gate .divider{
+    background:var(--gold-light);
+    margin:28px auto;
+  }
+  #audio-gate .divider::after{background:var(--navy)}
+  #audio-gate h2{
+    font-family:'Cormorant Garamond',serif;font-weight:400;
+    font-size:clamp(1.5rem,5vw,2rem);
+    color:#fff;margin:0 0 14px;
+    letter-spacing:.01em;
   }
   #audio-gate p{
-    font-family:'Cormorant Garamond',serif;
-    font-style:italic;
-    font-size:.98rem;
-    color:var(--cream-muted);
-    line-height:1.7;
-    max-width:400px;margin:0 auto;
+    font-family:'Jost',sans-serif;font-weight:300;
+    font-size:.95rem;color:#B8B6D0;line-height:1.7;
   }
   #audio-gate .gate-btn{
-    display:inline-flex;align-items:center;gap:14px;
-    margin-top:44px;
-    padding:18px 46px;
-    background:transparent;
+    display:inline-block;margin-top:34px;
+    padding:15px 42px;
     border:1px solid var(--gold);
     color:var(--gold);
-    font-family:'Outfit',sans-serif;
-    font-size:.68rem;font-weight:500;
-    letter-spacing:.4em;text-transform:uppercase;
-    cursor:pointer;
-    transition:all .45s ease;
-    position:relative;
+    font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
+    border-radius:2px;
+    transition:all .3s ease;
+    font-weight:500;
   }
-  #audio-gate .gate-btn::before,
-  #audio-gate .gate-btn::after{
-    content:'';position:absolute;
-    width:6px;height:6px;
-    background:var(--navy);
-    border:1px solid var(--gold);
-    transform:rotate(45deg);
-    top:50%;margin-top:-3px;
-  }
-  #audio-gate .gate-btn::before{left:-3px}
-  #audio-gate .gate-btn::after{right:-3px}
   #audio-gate:hover .gate-btn,
   #audio-gate:active .gate-btn{
     background:var(--gold);
     color:var(--navy);
-    letter-spacing:.44em;
   }
-  #audio-gate .gate-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
-  #audio-gate .gate-hint{
-    margin-top:44px;
-    font-family:'Outfit',sans-serif;
-    font-size:.6rem;font-weight:400;
-    letter-spacing:.44em;text-transform:uppercase;
-    color:var(--gold);
-    opacity:.5;
-    animation:pulse 2.8s ease-in-out infinite;
-  }
-  @keyframes pulse{0%,100%{opacity:.35}50%{opacity:.8}}
 
-  /* ============================================================
-     REVEAL
-     ============================================================ */
-  .reveal{opacity:0;transform:translateY(30px);transition:opacity 1s ease,transform 1s ease}
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
   .reveal.in{opacity:1;transform:none}
 
-  /* ============================================================
-     RESPONSIVE
-     ============================================================ */
-  @media(max-width:880px){
-    .panels{grid-template-columns:1fr}
-    .panel:not(:last-child){
-      border-right:none;
-      border-bottom:1px solid var(--line);
-    }
-    .panel h3{min-height:0}
-    .panel p{min-height:0}
-    .venue-row{
-      grid-template-columns:100px 1fr auto;
-      gap:22px;
-      padding:30px 4px;
-    }
-    .venue-left{padding-right:20px}
-  }
-
-  @media(max-width:600px){
-    section{padding:80px 0}
-    .wrap,.wrap-narrow{padding:0 22px}
-    .hero{padding:26px 22px 30px}
-    .hero-nav{font-size:.6rem;letter-spacing:.26em}
-    .hero-nav .nav-mid{display:none}
-    .hero::after{inset:12px}
-    .hero::before{inset:17px}
-    .hero-kicker{font-size:.6rem;letter-spacing:.36em;margin-bottom:24px}
-    .hero-kicker::before,.hero-kicker::after{width:24px}
-    .hero-names .family{font-size:.38em;letter-spacing:.3em}
-    .hero-amp{max-width:220px;margin:18px auto}
-    .hero-mono{font-size:3.4rem;margin:8px 0 14px}
-    .hero-date{font-size:.62rem;letter-spacing:.3em}
-    .hero-location{font-size:.92rem}
-    .hero-countdown{margin-top:30px}
-    .cd-item{padding:16px 2px}
-    .cd-num{font-size:1.7rem}
-    .cd-lbl{font-size:.48rem;letter-spacing:.24em}
-    .hero-footer{font-size:.55rem;gap:22px;letter-spacing:.26em}
-    .hero-footer span::before,
-    .hero-footer span::after{display:none}
-    .section-top .label{padding:0 14px;font-size:.55rem;letter-spacing:.3em}
-    .section-top .num{padding:0 14px}
-    .section-top .line{max-width:60px}
-    .story-text{text-align:left}
-    .story-text .drop{font-size:4rem;padding:4px 12px 0 0}
-    .panel{padding:44px 24px 40px}
-    .panel-day{font-size:3.8rem}
-    .venue-row{
-      grid-template-columns:1fr auto;
-      padding:26px 4px;
-      gap:18px;
-    }
-    .venue-left{
-      grid-column:1 / -1;
-      flex-direction:row;
-      justify-content:flex-start;
-      align-items:baseline;
-      gap:14px;
-      padding-right:0;
-      padding-bottom:14px;
-      border-right:none;
-      border-bottom:1px solid var(--line-soft);
-      text-align:left;
-    }
-    .venue-left .d{font-size:1.8rem}
-    .venue-left .m{margin-top:0}
-    .venue-left .t{margin-top:0;margin-left:auto}
-    .venue-info h3{font-size:1.15rem}
-    .venue-arrow{width:44px;height:44px}
-    .form-frame{padding:36px 24px}
-    .row{grid-template-columns:1fr;gap:0}
-    .check{padding:14px 16px;gap:14px}
-    .check span{font-size:.98rem}
-    .btn-submit{padding:17px 34px;font-size:.62rem;letter-spacing:.32em}
-    #audio-gate .gate-kicker{font-size:.55rem;letter-spacing:.36em}
-    #audio-gate .gate-hint{font-size:.54rem;letter-spacing:.34em}
+  @media(max-width:560px){
+    section{padding:66px 0}
+    .row{grid-template-columns:1fr}
+    .countdown{gap:18px}
+    .event{gap:18px}
+    .timeline::before{left:22px}
+    .event-dot{flex:0 0 45px;height:45px;font-size:.95rem}
+    .hero::before,.hero::after{display:none}
   }
 </style>
 </head>
 <body>
 
-<!-- ══════════ OVERLAY ART DÉCO ══════════ -->
+<!-- ══════════ OVERLAY D'ACCUEIL — premier écran ══════════ -->
 <div id="audio-gate" role="button" tabindex="0" aria-label="Démarrer l'expérience">
-  <svg class="gate-sunburst" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="#C9A227" stroke-width="0.4" fill="none">
-      <line x1="200" y1="200" x2="200" y2="0"/>
-      <line x1="200" y1="200" x2="341" y2="59"/>
-      <line x1="200" y1="200" x2="400" y2="200"/>
-      <line x1="200" y1="200" x2="341" y2="341"/>
-      <line x1="200" y1="200" x2="200" y2="400"/>
-      <line x1="200" y1="200" x2="59" y2="341"/>
-      <line x1="200" y1="200" x2="0" y2="200"/>
-      <line x1="200" y1="200" x2="59" y2="59"/>
-      <line x1="200" y1="200" x2="300" y2="30"/>
-      <line x1="200" y1="200" x2="370" y2="100"/>
-      <line x1="200" y1="200" x2="370" y2="300"/>
-      <line x1="200" y1="200" x2="300" y2="370"/>
-      <line x1="200" y1="200" x2="100" y2="370"/>
-      <line x1="200" y1="200" x2="30" y2="300"/>
-      <line x1="200" y1="200" x2="30" y2="100"/>
-      <line x1="200" y1="200" x2="100" y2="30"/>
-      <circle cx="200" cy="200" r="40"/>
-      <circle cx="200" cy="200" r="80"/>
-      <circle cx="200" cy="200" r="120"/>
-      <circle cx="200" cy="200" r="160"/>
-    </g>
-  </svg>
-
   <div class="gate-inner">
-    <div class="gate-kicker">Faire-part de mariage</div>
-    <div class="gate-mono">K<em>&</em>R</div>
-    <div class="gate-arc"></div>
-    <h2>Une histoire à célébrer</h2>
+    <div class="monogram">K<span>&</span>R</div>
+    <div class="divider"></div>
+    <h2>Bienvenue</h2>
     <p>Touchez l'écran pour découvrir<br>notre faire-part en musique.</p>
-    <button class="gate-btn" type="button">
-      Entrer
-      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </button>
-    <div class="gate-hint">24 · 26 · 28 Novembre 2026</div>
+    <span class="gate-btn">Entrer</span>
   </div>
 </div>
 
 <!-- ══════════ HERO ══════════ -->
 <header class="hero">
-  <svg class="sunburst" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-    <g stroke="#C9A227" stroke-width="0.3" fill="none">
-      <line x1="200" y1="200" x2="200" y2="0"/>
-      <line x1="200" y1="200" x2="341" y2="59"/>
-      <line x1="200" y1="200" x2="400" y2="200"/>
-      <line x1="200" y1="200" x2="341" y2="341"/>
-      <line x1="200" y1="200" x2="200" y2="400"/>
-      <line x1="200" y1="200" x2="59" y2="341"/>
-      <line x1="200" y1="200" x2="0" y2="200"/>
-      <line x1="200" y1="200" x2="59" y2="59"/>
-      <line x1="200" y1="200" x2="300" y2="30"/>
-      <line x1="200" y1="200" x2="370" y2="100"/>
-      <line x1="200" y1="200" x2="370" y2="300"/>
-      <line x1="200" y1="200" x2="300" y2="370"/>
-      <line x1="200" y1="200" x2="100" y2="370"/>
-      <line x1="200" y1="200" x2="30" y2="300"/>
-      <line x1="200" y1="200" x2="30" y2="100"/>
-      <line x1="200" y1="200" x2="100" y2="30"/>
-      <circle cx="200" cy="200" r="80"/>
-      <circle cx="200" cy="200" r="140"/>
-      <circle cx="200" cy="200" r="190"/>
-    </g>
-  </svg>
+  <div class="monogram">K<span>&</span>R</div>
+  <div class="divider"></div>
+  <h1>
+    Sagnon Kassian Dieudonné
+    <span class="amp">&amp;</span>
+    Djiguemdé Rimbésida Ma
+  </h1>
+  <p class="date">24 · 26 · 28 Novembre 2026</p>
+  <p class="place">Bobo-Dioulasso, Burkina Faso</p>
 
-  <nav class="hero-nav">
-    <div class="brand">K<em>&</em>R</div>
-    <div class="nav-mid">Bobo-Dioulasso · Burkina Faso</div>
-    <div>MMXXVI</div>
-  </nav>
-
-  <div class="hero-body">
-    <div class="hero-kicker">Mariage</div>
-
-    <h1 class="hero-names">
-      <span class="family">Sagnon</span>
-      <span class="first">Kassian Dieudonné</span>
-    </h1>
-
-    <div class="hero-amp"><span>&</span></div>
-
-    <h1 class="hero-names">
-      <span class="family">Djiguemdé</span>
-      <span class="first">Rimbésida Ma</span>
-    </h1>
-
-    <div class="hero-mono">K<em>&</em>R</div>
-
-    <p class="hero-date"><strong>24 · 26 · 28</strong> Novembre 2026</p>
-    <p class="hero-location">Trois jours de célébration</p>
-
-    <div class="hero-countdown" id="countdown">
-      <div class="cd-item"><div class="cd-num" id="cd-d">—</div><div class="cd-lbl">Jours</div></div>
-      <div class="cd-item"><div class="cd-num" id="cd-h">—</div><div class="cd-lbl">Heures</div></div>
-      <div class="cd-item"><div class="cd-num" id="cd-m">—</div><div class="cd-lbl">Minutes</div></div>
-      <div class="cd-item"><div class="cd-num" id="cd-s">—</div><div class="cd-lbl">Secondes</div></div>
-    </div>
-  </div>
-
-  <div class="hero-footer">
-    <span>Défilez pour découvrir</span>
+  <div class="countdown" id="countdown">
+    <div class="cd-item"><div class="cd-num" id="cd-d">—</div><div class="cd-lbl">Jours</div></div>
+    <div class="cd-item"><div class="cd-num" id="cd-h">—</div><div class="cd-lbl">Heures</div></div>
+    <div class="cd-item"><div class="cd-num" id="cd-m">—</div><div class="cd-lbl">Minutes</div></div>
+    <div class="cd-item"><div class="cd-num" id="cd-s">—</div><div class="cd-lbl">Secondes</div></div>
   </div>
 </header>
 
 <!-- ══════════ NOTRE HISTOIRE ══════════ -->
 <section class="story">
   <div class="wrap">
-    <div class="section-top">
-      <div class="line"></div>
-      <div class="num">I</div>
-      <div class="label">Notre histoire</div>
-      <div class="num">I</div>
-      <div class="line"></div>
-    </div>
-
-    <div class="section-head reveal">
-      <h2>Là où tout <em>commence</em></h2>
-    </div>
-
-    <div class="story-grid">
-      <p class="story-text reveal">
-        <span class="drop">À</span> partir d'un mot d'encouragement pour apporter son soutien
-        lors de la perte d'un être cher, puis d'un autre pour souhaiter un heureux anniversaire,
-        est née une histoire d'amour sincère, pure et vraie.
-      </p>
-
-      <div class="story-ornament reveal">
-        <span>
-          <span class="d"></span>
-          <span class="d"></span>
-          <span class="d"></span>
-        </span>
-      </div>
-
-      <p class="story-quote reveal">
-        « Comme quoi souvent c'est à partir d'un geste simple et humain<br>
-        qu'on gagne le cœur d'une personne. »
-      </p>
-    </div>
+    <p class="section-sub reveal">Notre histoire</p>
+    <h2 class="section-title reveal">Là où tout a commencé</h2>
+    <div class="divider reveal"></div>
+    <p class="quote reveal">Nous nous sommes rencontrés derrière l'église.</p>
+    <p class="reveal">
+      Un lieu simple, un moment ordinaire… et pourtant le début de toute une vie.
+      Aujourd'hui, nous vous invitons à célébrer avec nous ce chemin parcouru ensemble.
+    </p>
   </div>
 </section>
 
 <!-- ══════════ PROGRAMME ══════════ -->
 <section class="programme">
   <div class="wrap">
-    <div class="section-top">
-      <div class="line"></div>
-      <div class="num">II</div>
-      <div class="label">Programme</div>
-      <div class="num">II</div>
-      <div class="line"></div>
-    </div>
+    <p class="section-sub reveal">Programme</p>
+    <h2 class="section-title reveal">Trois jours de célébration</h2>
 
-    <div class="section-head reveal">
-      <h2>Trois jours <em>de célébration</em></h2>
-    </div>
-
-    <div class="panels reveal">
-
-      <article class="panel">
-        <div class="panel-arc"></div>
-        <div class="panel-day">24</div>
-        <div class="panel-weekday">Mardi · Novembre</div>
-        <div class="panel-divider"><span class="d"></span></div>
-        <h3>Fermeture de la tête de la mariée</h3>
-        <p>Cérémonie traditionnelle et familiale, en intimité avec nos proches.</p>
-        <div class="panel-time">
-          06h00
-          <small>Début</small>
+    <div class="timeline">
+      <article class="event reveal">
+        <div class="event-dot">24</div>
+        <div class="event-body">
+          <p class="event-day">Mardi 24 Novembre</p>
+          <h3>Fermeture de la tête de la mariée</h3>
+          <p>Cérémonie traditionnelle et familiale, en intimité avec nos proches.</p>
+          <div class="event-meta">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <span>À partir de 10h00</span>
+          </div>
         </div>
       </article>
 
-      <article class="panel">
-        <div class="panel-arc"></div>
-        <div class="panel-day">26</div>
-        <div class="panel-weekday">Jeudi · Novembre</div>
-        <div class="panel-divider"><span class="d"></span></div>
-        <h3>Mariage religieux musulman</h3>
-        <p>Bénédiction religieuse.</p>
-        <div class="panel-time">
-          14h00
-          <small>Début</small>
+      <article class="event reveal">
+        <div class="event-dot">26</div>
+        <div class="event-body">
+          <p class="event-day">Jeudi 26 Novembre</p>
+          <h3>Mariage religieux musulman</h3>
+          <p>Bénédiction religieuse suivie d'un moment de partage.</p>
+          <div class="event-meta">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <span>À partir de 14h00</span>
+          </div>
         </div>
       </article>
 
-      <article class="panel">
-        <div class="panel-arc"></div>
-        <div class="panel-day">28</div>
-        <div class="panel-weekday">Samedi · Novembre</div>
-        <div class="panel-divider"><span class="d"></span></div>
-        <h3>Mariage civil &amp; religieux catholique</h3>
-        <p>Mairie à 9h, Église à 10h30, puis lunch à 13h.</p>
-        <div class="panel-time">
-          09h00
-          <small>Début</small>
+      <article class="event reveal">
+        <div class="event-dot">28</div>
+        <div class="event-body">
+          <p class="event-day">Samedi 28 Novembre</p>
+          <h3>Mariage civil &amp; religieux catholique</h3>
+          <p>Mairie de Dafra à 9h, puis Église Saint Vincent de Paul à 11h.</p>
+          <div class="event-meta">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <span>À partir de 9h00</span>
+          </div>
         </div>
       </article>
-
     </div>
   </div>
 </section>
 
-<!-- ══════════ LIEUX ══════════ -->
-<section class="venues">
+<!-- ══════════ LIEUX — classés par ordre chronologique ══════════ -->
+<section>
   <div class="wrap">
-    <div class="section-top">
-      <div class="line"></div>
-      <div class="num">III</div>
-      <div class="label">Nous rejoindre</div>
-      <div class="num">III</div>
-      <div class="line"></div>
-    </div>
+    <p class="section-sub reveal">Itinéraires</p>
+    <h2 class="section-title reveal">Nous rejoindre</h2>
+    <div style="height:46px"></div>
 
-    <div class="section-head reveal">
-      <h2>Les <em>lieux</em></h2>
-    </div>
-
-    <div class="venue-list">
-
-      <a class="venue-row reveal" target="_blank" rel="noopener"
+    <!-- 1. Mardi 24 -->
+    <div class="venue reveal">
+      <span class="venue-day">Mardi 24 Novembre · 10h00</span>
+      <h3>Fermeture de la tête de la mariée</h3>
+      <p>Cérémonie privée, en famille. Lieu communiqué ultérieurement.</p>
+      <a class="btn" target="_blank" rel="noopener"
          href="https://www.google.com/maps/search/?api=1&query=Bobo-Dioulasso">
-        <div class="venue-left">
-          <span class="d">24</span>
-          <span class="m">Mardi</span>
-          <span class="t">6h</span>
-        </div>
-        <div class="venue-info">
-          <h3>Fermeture de la tête de la mariée</h3>
-          <p>Cérémonie privée, en famille. Lieu communiqué ultérieurement.</p>
-        </div>
-        <div class="venue-arrow">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </div>
+         Voir la ville
       </a>
+    </div>
 
-      <a class="venue-row reveal" target="_blank" rel="noopener"
-         href="https://www.google.com/maps/place/11%C2%B010'40.8%22N+4%C2%B019'41.0%22W/@11.1780042,-4.3306382,17z/data=!3m1!4b1!4m4!3m3!8m2!3d11.1780042!4d-4.3280633?hl=fr&entry=ttu">
-        <div class="venue-left">
-          <span class="d">26</span>
-          <span class="m">Jeudi</span>
-          <span class="t">14h</span>
-        </div>
-        <div class="venue-info">
-          <h3>Mariage religieux musulman</h3>
-          <p>Mosquée — Secteur 21, vers la base aérienne.</p>
-        </div>
-        <div class="venue-arrow">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </div>
+    <!-- 2. Jeudi 26 -->
+    <div class="venue reveal">
+      <span class="venue-day">Jeudi 26 Novembre · 14h00</span>
+      <h3>Mariage religieux musulman</h3>
+      <p>Lieu communiqué ultérieurement.</p>
+      <a class="btn" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/search/?api=1&query=Bobo-Dioulasso">
+         Voir la ville
       </a>
+    </div>
 
-      <a class="venue-row reveal" target="_blank" rel="noopener"
+    <!-- 3. Samedi 28 — Mairie -->
+    <div class="venue reveal">
+      <span class="venue-day">Samedi 28 Novembre · 9h00</span>
+      <h3>Mairie de Dafra</h3>
+      <p>Célébration civile.</p>
+      <a class="btn" target="_blank" rel="noopener"
          href="https://www.google.com/maps/search/?api=1&query=Mairie+de+Dafra+Bobo-Dioulasso">
-        <div class="venue-left">
-          <span class="d">28</span>
-          <span class="m">Samedi</span>
-          <span class="t">9h</span>
-        </div>
-        <div class="venue-info">
-          <h3>Mairie de Dafra</h3>
-          <p>Célébration civile.</p>
-        </div>
-        <div class="venue-arrow">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </div>
+         Ouvrir dans Maps
       </a>
+    </div>
 
-      <a class="venue-row reveal" target="_blank" rel="noopener"
+    <!-- 4. Samedi 28 — Église -->
+    <div class="venue reveal">
+      <span class="venue-day">Samedi 28 Novembre · 11h00</span>
+      <h3>Église Saint Vincent de Paul</h3>
+      <p>Célébration religieuse catholique.</p>
+      <a class="btn" target="_blank" rel="noopener"
          href="https://www.google.com/maps/search/?api=1&query=Église+Saint+Vincent+de+Paul+Bobo-Dioulasso">
-        <div class="venue-left">
-          <span class="d">28</span>
-          <span class="m">Samedi</span>
-          <span class="t">10h30</span>
-        </div>
-        <div class="venue-info">
-          <h3>Église Saint Vincent de Paul</h3>
-          <p>Célébration religieuse catholique.</p>
-        </div>
-        <div class="venue-arrow">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </div>
+         Ouvrir dans Maps
       </a>
-
-      <a class="venue-row reveal" target="_blank" rel="noopener"
-         href="https://www.google.com/maps/search/?api=1&query=Bobo-Dioulasso">
-        <div class="venue-left">
-          <span class="d">28</span>
-          <span class="m">Samedi</span>
-          <span class="t">13h</span>
-        </div>
-        <div class="venue-info">
-          <h3>Lunch</h3>
-          <p>Réception et repas de célébration. Lieu communiqué ultérieurement.</p>
-        </div>
-        <div class="venue-arrow">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </div>
-      </a>
-
     </div>
   </div>
 </section>
@@ -1418,99 +517,83 @@
 <!-- ══════════ RSVP ══════════ -->
 <section class="rsvp" id="rsvp">
   <div class="wrap">
-    <div class="section-top">
-      <div class="line"></div>
-      <div class="num">IV</div>
-      <div class="label">Réponse souhaitée</div>
-      <div class="num">IV</div>
-      <div class="line"></div>
-    </div>
-
-    <div class="section-head reveal">
-      <h2>Votre <em>présence</em></h2>
-    </div>
-
-    <p class="rsvp-lead reveal">
-      Merci de nous répondre <strong>avant le 10 novembre 2026</strong>.<br>
+    <p class="section-sub reveal">Réponse souhaitée</p>
+    <h2 class="section-title reveal">Confirmez votre présence</h2>
+    <div style="height:20px"></div>
+    <p class="lead reveal">
+      Merci de nous répondre <strong>avant le 10 novembre 2026</strong>.
       Vos réponses nous sont directement transmises et servent uniquement à l'organisation.
     </p>
 
     <form id="rsvp-form" name="rsvp" method="POST" action="/merci.html"
-          data-netlify="true" netlify-honeypot="bot-field" class="reveal">
+          data-netlify="true" netlify-honeypot="bot-field">
 
       <input type="hidden" name="form-name" value="rsvp">
       <p hidden><label>Ne pas remplir : <input name="bot-field"></label></p>
 
-      <div class="form-frame">
+      <div class="field">
+        <label for="nom">Nom &amp; prénom *</label>
+        <input type="text" id="nom" name="nom" required placeholder="Ex. Awa Traoré">
+      </div>
 
+      <div class="row">
         <div class="field">
-          <label for="nom">Nom &amp; prénom *</label>
-          <input type="text" id="nom" name="nom" required placeholder="Votre réponse…">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="vous@exemple.com">
         </div>
-
-        <div class="row">
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="vous@exemple.com">
-          </div>
-          <div class="field">
-            <label for="telephone">Téléphone</label>
-            <input type="tel" id="telephone" name="telephone" placeholder="+226 ...">
-          </div>
-        </div>
-
         <div class="field">
-          <label>À quelle(s) cérémonie(s) serez-vous présent(e) ? *</label>
-          <div class="checks">
-            <label class="check">
-              <input type="checkbox" name="ceremonie" value="Fermeture tête de la mariée (mardi 24)">
-              <span>Fermeture de la tête de la mariée
-                <small>Mardi 24 novembre</small>
-              </span>
-            </label>
-            <label class="check">
-              <input type="checkbox" name="ceremonie" value="Mariage musulman (jeudi 26)">
-              <span>Mariage religieux musulman
-                <small>Jeudi 26 novembre</small>
-              </span>
-            </label>
-            <label class="check">
-              <input type="checkbox" name="ceremonie" value="Mariage civil et catholique (samedi 28)">
-              <span>Mariage civil &amp; catholique
-                <small>Samedi 28 novembre</small>
-              </span>
-            </label>
-          </div>
+          <label for="telephone">Téléphone</label>
+          <input type="tel" id="telephone" name="telephone" placeholder="+226 ...">
         </div>
+      </div>
 
-        <div class="row">
-          <div class="field">
-            <label for="adultes">Nombre d'adultes</label>
-            <input type="number" id="adultes" name="adultes" min="1" value="1">
-          </div>
-          <div class="field">
-            <label for="enfants">Nombre d'enfants</label>
-            <input type="number" id="enfants" name="enfants" min="0" value="0">
-          </div>
+      <div class="field">
+        <label>À quelle(s) cérémonie(s) serez-vous présent(e) ? *</label>
+        <div class="checks">
+          <label class="check">
+            <input type="checkbox" name="ceremonie" value="Fermeture tête de la mariée (mardi 24)">
+            <span>Fermeture de la tête de la mariée
+              <small>Mardi 24 novembre</small>
+            </span>
+          </label>
+          <label class="check">
+            <input type="checkbox" name="ceremonie" value="Mariage musulman (jeudi 26)">
+            <span>Mariage religieux musulman
+              <small>Jeudi 26 novembre</small>
+            </span>
+          </label>
+          <label class="check">
+            <input type="checkbox" name="ceremonie" value="Mariage civil et catholique (samedi 28)">
+            <span>Mariage civil &amp; catholique
+              <small>Samedi 28 novembre</small>
+            </span>
+          </label>
         </div>
+      </div>
 
+      <div class="row">
         <div class="field">
-          <label for="message">Un mot pour les mariés</label>
-          <textarea id="message" name="message" placeholder="Votre message (facultatif)…"></textarea>
+          <label for="adultes">Nombre d'adultes</label>
+          <input type="number" id="adultes" name="adultes" min="1" value="1">
         </div>
-
-        <div class="submit-row">
-          <button type="submit" class="btn-submit">
-            Confirmer ma présence
-            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </button>
+        <div class="field">
+          <label for="enfants">Nombre d'enfants</label>
+          <input type="number" id="enfants" name="enfants" min="0" value="0">
         </div>
+      </div>
 
+      <div class="field">
+        <label for="message">Un mot pour les mariés</label>
+        <textarea id="message" name="message" placeholder="Votre message (facultatif)…"></textarea>
+      </div>
+
+      <div class="submit-row">
+        <button type="submit" class="btn">Confirmer ma présence</button>
       </div>
     </form>
 
     <div id="rsvp-success">
-      <div class="success-arc"></div>
+      <div class="monogram">K<span>&</span>R</div>
       <h3>Merci infiniment</h3>
       <p>Votre réponse a bien été enregistrée.<br>Nous avons hâte de vous compter parmi nous.</p>
     </div>
@@ -1519,12 +602,7 @@
 
 <!-- ══════════ FOOTER ══════════ -->
 <footer>
-  <div class="foot-mono">K<em>&</em>R</div>
-  <div class="foot-flute">
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
+  <div class="monogram">K<span>&</span>R</div>
   <p>24 · 26 · 28 Novembre 2026 — Bobo-Dioulasso</p>
 </footer>
 
@@ -1550,7 +628,7 @@
 
 <script>
 /* ---------- COMPTE À REBOURS ---------- */
-const TARGET = new Date('2026-11-24T06:00:00').getTime();
+const TARGET = new Date('2026-11-24T10:00:00').getTime();
 const cd = {d:document.getElementById('cd-d'),h:document.getElementById('cd-h'),
             m:document.getElementById('cd-m'),s:document.getElementById('cd-s')};
 function tick(){
@@ -1572,7 +650,7 @@ const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
 },{threshold:.12});
 document.querySelectorAll('.reveal').forEach((el,i)=>{
-  el.style.transitionDelay = (i%4)*120 + 'ms';
+  el.style.transitionDelay = (i%4)*90 + 'ms';
   io.observe(el);
 });
 
@@ -1581,7 +659,7 @@ const form = document.getElementById('rsvp-form');
 form.addEventListener('submit', async (e)=>{
   e.preventDefault();
   const btn = form.querySelector('button[type=submit]');
-  const original = btn.innerHTML;
+  const original = btn.textContent;
 
   if(!form.querySelectorAll('input[name="ceremonie"]:checked').length){
     alert('Merci de sélectionner au moins une cérémonie.');
@@ -1606,12 +684,19 @@ form.addEventListener('submit', async (e)=>{
   }catch(err){
     console.error(err);
     btn.disabled = false;
-    btn.innerHTML = original;
+    btn.textContent = original;
     alert("Une erreur est survenue. Merci de réessayer dans un instant.");
   }
 });
 
-/* ---------- MUSIQUE ---------- */
+/* ══════════════════════════════════════════════════════════
+   MUSIQUE — Overlay d'accueil en premier écran
+   L'utilisateur voit l'overlay dès l'arrivée.
+   Un tap sur l'overlay :
+     1) démarre la musique (geste utilisateur → lecture garantie)
+     2) fait disparaître l'overlay en fondu
+   Ensuite, le bouton flottant permet couper/réactiver.
+   ══════════════════════════════════════════════════════════ */
 const audio    = document.getElementById('bg-music');
 const mBtn     = document.getElementById('music-btn');
 const iOn      = document.getElementById('icon-on');
@@ -1619,20 +704,26 @@ const iOff     = document.getElementById('icon-off');
 const gate     = document.getElementById('audio-gate');
 let   playing  = false;
 let   userMuted = false;
-let   gateOpened = false;
+let   gateOpened = false;   // évite les doubles déclenchements
 
 audio.volume = 0.55;
 
+/* Icône + accessibilité */
 function setIcon(isPlaying){
   if(isPlaying){
     iOn.style.display  = 'block';
     iOff.style.display = 'none';
+    mBtn.setAttribute('aria-label', 'Couper la musique');
+    mBtn.setAttribute('title', 'Couper la musique');
   } else {
     iOn.style.display  = 'none';
     iOff.style.display = 'block';
+    mBtn.setAttribute('aria-label', 'Activer la musique');
+    mBtn.setAttribute('title', 'Activer la musique');
   }
 }
 
+/* Tentative de lecture (renvoie true si succès) */
 async function tryPlay(){
   try {
     audio.muted = false;
@@ -1647,21 +738,28 @@ async function tryPlay(){
   }
 }
 
+/* Ouvrir la porte : lancer la musique + masquer l'overlay */
 async function openGate(){
   if(gateOpened) return;
   gateOpened = true;
   userMuted  = false;
+
+  // Le geste utilisateur garantit le succès de la lecture
   await tryPlay();
+
+  // Fondu de sortie de l'overlay
   gate.classList.add('hide');
-  setTimeout(() => { gate.style.display = 'none'; }, 1000);
+  setTimeout(() => { gate.style.display = 'none'; }, 750);
 }
 
+/* Écouteurs sur l'overlay (clic, toucher, clavier) */
 gate.addEventListener('click', openGate);
 gate.addEventListener('touchstart', openGate, { passive: true });
 gate.addEventListener('keydown', (e) => {
   if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openGate(); }
 });
 
+/* Bouton play/pause flottant (visible une fois l'overlay fermé) */
 mBtn.addEventListener('click', async (e) => {
   e.stopPropagation();
   if(playing){
@@ -1675,6 +773,7 @@ mBtn.addEventListener('click', async (e) => {
   }
 });
 
+/* Synchronisation de l'icône si le navigateur met en pause tout seul */
 audio.addEventListener('pause', () => {
   if(!userMuted){ playing = false; setIcon(false); }
 });
@@ -1683,6 +782,9 @@ audio.addEventListener('play', () => {
   setIcon(true);
 });
 
+/* Tentative silencieuse d'autoplay en arrière-plan :
+   si le navigateur l'autorise, la musique sera déjà lancée
+   au moment où l'utilisateur touchera l'overlay. */
 window.addEventListener('DOMContentLoaded', () => { tryPlay(); });
 </script>
 
