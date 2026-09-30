@@ -336,20 +336,32 @@
     font-family:'Jost',sans-serif;font-weight:300;
     font-size:.95rem;color:#B8B6D0;line-height:1.7;
   }
+  /* BOUTON ENTRER - transformé en <button> pour un clic fiable */
   #audio-gate .gate-btn{
-    display:inline-block;margin-top:34px;
+    display:inline-block;
+    margin-top:34px;
     padding:15px 42px;
     border:1px solid var(--gold);
     color:var(--gold);
+    background:transparent;
+    font-family:'Jost',sans-serif;
     font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
     border-radius:2px;
     transition:all .3s ease;
     font-weight:500;
+    cursor:pointer;
+    -webkit-appearance:none;
+    appearance:none;
   }
-  #audio-gate:hover .gate-btn,
-  #audio-gate:active .gate-btn{
+  #audio-gate .gate-btn:hover,
+  #audio-gate .gate-btn:focus{
     background:var(--gold);
     color:var(--navy);
+    outline:none;
+  }
+  #audio-gate .gate-btn:disabled{
+    opacity:.7;
+    cursor:wait;
   }
 
   /* ---------- REVEAL ---------- */
@@ -376,7 +388,7 @@
     <div class="divider"></div>
     <h2>Bienvenue</h2>
     <p>Touchez l'écran pour découvrir<br>notre faire-part en musique.</p>
-    <span class="gate-btn">Entrer</span>
+    <button id="gate-btn" class="gate-btn" type="button">Entrer</button>
   </div>
 </div>
 
@@ -706,19 +718,22 @@ form.addEventListener('submit', async (e)=>{
 });
 
 /* ══════════════════════════════════════════════════════════
-   MUSIQUE - Overlay d'accueil en premier écran
+   MUSIQUE - Démarrage garanti au clic sur "ENTRER"
    ══════════════════════════════════════════════════════════ */
-const audio    = document.getElementById('bg-music');
-const mBtn     = document.getElementById('music-btn');
-const iOn      = document.getElementById('icon-on');
-const iOff     = document.getElementById('icon-off');
-const gate     = document.getElementById('audio-gate');
-let   playing  = false;
-let   userMuted = false;
+const audio      = document.getElementById('bg-music');
+const mBtn       = document.getElementById('music-btn');
+const iOn        = document.getElementById('icon-on');
+const iOff       = document.getElementById('icon-off');
+const gate       = document.getElementById('audio-gate');
+const gateBtn    = document.getElementById('gate-btn');
+
+let   playing    = false;
+let   userMuted  = false;
 let   gateOpened = false;
 
 audio.volume = 0.55;
 
+/* Icône + accessibilité */
 function setIcon(isPlaying){
   if(isPlaying){
     iOn.style.display  = 'block';
@@ -733,6 +748,26 @@ function setIcon(isPlaying){
   }
 }
 
+/* Force le préchargement de l'audio (utile pour les fichiers .mp4) */
+function ensureLoaded(){
+  return new Promise((resolve) => {
+    if(audio.readyState >= 2){ resolve(); return; } // déjà prêt
+    let resolved = false;
+    const done = () => {
+      if(resolved) return;
+      resolved = true;
+      audio.removeEventListener('canplay', done);
+      audio.removeEventListener('loadeddata', done);
+      resolve();
+    };
+    audio.addEventListener('canplay', done);
+    audio.addEventListener('loadeddata', done);
+    try { audio.load(); } catch(e){ /* ignore */ }
+    setTimeout(done, 2500); // sécurité : on continue après 2,5 s max
+  });
+}
+
+/* Tentative de lecture - renvoie true si succès */
 async function tryPlay(){
   try {
     audio.muted = false;
@@ -741,29 +776,62 @@ async function tryPlay(){
     setIcon(true);
     return true;
   } catch (err) {
+    console.warn('Lecture bloquée :', err);
     playing = false;
     setIcon(false);
     return false;
   }
 }
 
+/* Ouverture de la porte : lecture + fondu de sortie */
 async function openGate(){
   if(gateOpened) return;
   gateOpened = true;
   userMuted  = false;
 
-  await tryPlay();
+  // Feedback visuel
+  gateBtn.disabled = true;
+  gateBtn.textContent = 'Chargement…';
 
+  // 1. S'assurer que l'audio est prêt
+  await ensureLoaded();
+
+  // 2. Lancer la lecture (geste utilisateur → autorisé par le navigateur)
+  const ok = await tryPlay();
+
+  if(!ok){
+    // Échec : on réaffiche le bouton pour laisser réessayer
+    gateBtn.disabled = false;
+    gateBtn.textContent = 'Réessayer';
+    gateOpened = false;
+    return;
+  }
+
+  // 3. Fondu de sortie de l'overlay
   gate.classList.add('hide');
   setTimeout(() => { gate.style.display = 'none'; }, 750);
 }
 
-gate.addEventListener('click', openGate);
-gate.addEventListener('touchstart', openGate, { passive: true });
+/* Écouteur EXPLICITE sur le bouton "ENTRER" */
+gateBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  openGate();
+});
+
+/* Écouteurs sur tout l'overlay (fallback si clic ailleurs) */
+gate.addEventListener('click', (e) => {
+  if(e.target === gateBtn) return; // déjà géré par le bouton
+  openGate();
+});
+gate.addEventListener('touchstart', (e) => {
+  if(e.target === gateBtn) return;
+  openGate();
+}, { passive: true });
 gate.addEventListener('keydown', (e) => {
   if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openGate(); }
 });
 
+/* Bouton play/pause flottant */
 mBtn.addEventListener('click', async (e) => {
   e.stopPropagation();
   if(playing){
@@ -777,6 +845,7 @@ mBtn.addEventListener('click', async (e) => {
   }
 });
 
+/* Synchronisation de l'icône */
 audio.addEventListener('pause', () => {
   if(!userMuted){ playing = false; setIcon(false); }
 });
@@ -785,7 +854,12 @@ audio.addEventListener('play', () => {
   setIcon(true);
 });
 
-window.addEventListener('DOMContentLoaded', () => { tryPlay(); });
+/* Préchargement silencieux dès l'arrivée sur la page */
+window.addEventListener('DOMContentLoaded', () => {
+  ensureLoaded();
+  // Tentative d'autoplay silencieux : si ça marche, tant mieux, sinon l'overlay prend le relais
+  tryPlay();
+});
 </script>
 
 </body>
